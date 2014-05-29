@@ -12,9 +12,8 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
-        <activity
-            android:name="com.example.mobileinteracao.MainActivity"
+        android:theme="@style/AppTheme" ><activity
+            android:name="com.example.mobileinteracao.LoginActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +25,7 @@
             android:name="com.example.mobileinteracao.CadastroActivity"
             android:label="@string/title_activity_cadastro" >
         </activity>
+        
     </application>
 
 </manifest>
