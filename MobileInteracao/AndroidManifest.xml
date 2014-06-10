@@ -25,7 +25,9 @@
             android:name="com.example.mobileinteracao.CadastroActivity"
             android:label="@string/title_activity_cadastro" >
         </activity>
-        
+
     </application>
 
 </manifest>
+
+
