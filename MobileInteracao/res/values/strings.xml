@@ -7,6 +7,10 @@
     <string name="cadastrar">Cadastrar</string>
     <string name="entrar">Entrar</string>
     <string name="title_activity_cadastro">CadastroActivity</string>
-
+    <string name="usuario">Usuário</string>
+    <string name="senha">Senha</string>
+    <string name="matricula">Matrícula</string>
+    <string name="salvar">Salvar</string>
+    <string name="title_activity_detalhe_mensagem">DetalheMensagemActivity</string>
 
 </resources>
