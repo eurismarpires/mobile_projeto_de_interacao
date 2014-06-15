@@ -23,8 +23,6 @@ import android.os.Build;
 
 public class MainActivity extends Activity {
 
-	List<Notificacao> listaNotificacao = new ArrayList<Notificacao>();
-	ArrayAdapter<Notificacao> adaptador = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {				
@@ -33,25 +31,30 @@ public class MainActivity extends Activity {
 		
 		Notificacao n1 = new Notificacao();		
 		n1.setData(new Date());
-		n1.setRemetente("Eurismar Pires Borges");
+		n1.setRemetente("Biblioteca");
 		n1.setMensagem("Devolva o Livro");
 		
 		
 		Notificacao n2 = new Notificacao();		
 		n2.setData(new Date());
-		n2.setRemetente("Eurismar Pires Borges");
+		n2.setRemetente("INF");
 		n2.setMensagem("Prova na semana que vem");		
 		
-	//	List<Notificacao> notificacoes = ger
+		Notificacao n3 = new Notificacao();		
+		n3.setData(new Date());
+		n3.setRemetente("DCE");
+		n3.setMensagem("Este é um teste de notificação para alunos e funcionários da Universidade Federal de Goiás");		
+		
+		
+		List<Notificacao> listaNotificacao = new ArrayList<Notificacao>();
+		
 		
 		listaNotificacao.add(n1);
 		listaNotificacao.add(n2);
-		ListView lista = (ListView)findViewById(R.id.listView1);
-		
-		//adaptador = new ArrayAdapter<Notificacao>(this,android.R.layout.simple_list_item_1,listaNotificacao);
-		ListaNotificacoesAdapter adaptador = new ListaNotificacoesAdapter();
-		Log.i("EURISMAR", "PASSOU AKI....................1..........................");
-		lista.setAdapter(adaptador);
+		listaNotificacao.add(n3);
+	    ListView lista = (ListView)findViewById(R.id.listView1);		
+		ListaNotificacoesAdapter adapter = new ListaNotificacoesAdapter(this, listaNotificacao);		
+		lista.setAdapter(adapter);			
 	}
 
 	public void onClick(View v){
