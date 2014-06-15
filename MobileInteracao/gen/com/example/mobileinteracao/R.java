@@ -28,25 +28,26 @@ public final class R {
         public static final int action_settings=0x7f08000f;
         public static final int btnSalvar=0x7f080009;
         public static final int cadastrar=0x7f08000d;
-        public static final int checkedTextView1=0x7f08000e;
         public static final int container=0x7f08000a;
         public static final int editText1=0x7f080008;
         public static final int editText2=0x7f08000b;
         public static final int edtSenha=0x7f080005;
         public static final int edtUsuario=0x7f080002;
         public static final int entrar=0x7f08000c;
+        public static final int listView1=0x7f08000e;
         public static final int tableRow1=0x7f080000;
         public static final int tableRow2=0x7f080003;
         public static final int tableRow3=0x7f080006;
-        public static final int textView1=0x7f080001;
-        public static final int textView2=0x7f080004;
-        public static final int textView3=0x7f080007;
+        public static final int tvData=0x7f080004;
+        public static final int tvMensagem=0x7f080007;
+        public static final int tvRemetente=0x7f080001;
     }
     public static final class layout {
         public static final int activity_cadastro=0x7f030000;
         public static final int activity_detalhe_mensagem=0x7f030001;
         public static final int activity_login=0x7f030002;
         public static final int activity_main=0x7f030003;
+        public static final int notificacao_item=0x7f030004;
     }
     public static final class menu {
         public static final int cadastro=0x7f070000;
