@@ -25,19 +25,22 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f08000f;
+        public static final int action_settings=0x7f080012;
         public static final int btnSalvar=0x7f080009;
-        public static final int cadastrar=0x7f08000d;
+        public static final int cadastrar=0x7f080010;
         public static final int container=0x7f08000a;
         public static final int editText1=0x7f080008;
-        public static final int editText2=0x7f08000b;
+        public static final int edtLoginSenha=0x7f08000e;
         public static final int edtSenha=0x7f080005;
         public static final int edtUsuario=0x7f080002;
-        public static final int entrar=0x7f08000c;
-        public static final int listView1=0x7f08000e;
+        public static final int entrar=0x7f08000f;
+        public static final int listView1=0x7f080011;
         public static final int tableRow1=0x7f080000;
         public static final int tableRow2=0x7f080003;
         public static final int tableRow3=0x7f080006;
+        public static final int textView1=0x7f08000b;
+        public static final int textView2=0x7f08000c;
+        public static final int textView3=0x7f08000d;
         public static final int tvData=0x7f080004;
         public static final int tvMensagem=0x7f080007;
         public static final int tvRemetente=0x7f080001;
@@ -56,29 +59,31 @@ public final class R {
         public static final int main=0x7f070003;
     }
     public static final class string {
-        public static final int action_forgot_password=0x7f050010;
+        public static final int ContextoDados_onCreate=0x7f05000b;
+        public static final int ContextoDados_onUpgrade=0x7f05000c;
+        public static final int action_forgot_password=0x7f050012;
         public static final int action_settings=0x7f050002;
-        public static final int action_sign_in_register=0x7f05000e;
-        public static final int action_sign_in_short=0x7f05000f;
+        public static final int action_sign_in_register=0x7f050010;
+        public static final int action_sign_in_short=0x7f050011;
         public static final int app_name=0x7f050000;
         public static final int cadastrar=0x7f050003;
         public static final int entrar=0x7f050004;
-        public static final int error_field_required=0x7f050015;
-        public static final int error_incorrect_password=0x7f050014;
-        public static final int error_invalid_email=0x7f050012;
-        public static final int error_invalid_password=0x7f050013;
+        public static final int error_field_required=0x7f050017;
+        public static final int error_incorrect_password=0x7f050016;
+        public static final int error_invalid_email=0x7f050014;
+        public static final int error_invalid_password=0x7f050015;
         public static final int hello_world=0x7f050001;
-        public static final int login_progress_signing_in=0x7f050011;
+        public static final int login_progress_signing_in=0x7f050013;
         public static final int matricula=0x7f050008;
         /**  Strings related to login 
          */
-        public static final int prompt_email=0x7f05000c;
-        public static final int prompt_password=0x7f05000d;
+        public static final int prompt_email=0x7f05000e;
+        public static final int prompt_password=0x7f05000f;
         public static final int salvar=0x7f050009;
         public static final int senha=0x7f050007;
         public static final int title_activity_cadastro=0x7f050005;
         public static final int title_activity_detalhe_mensagem=0x7f05000a;
-        public static final int title_activity_login=0x7f05000b;
+        public static final int title_activity_login=0x7f05000d;
         public static final int usuario=0x7f050006;
     }
     public static final class style {

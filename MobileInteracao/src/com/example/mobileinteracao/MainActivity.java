@@ -59,7 +59,7 @@ public class MainActivity extends Activity {
 
 	public void onClick(View v){
 		Intent intent = new Intent(this, CadastroActivity.class);
-		startActivity(intent);
+		startActivity(intent);		
 	}
 
 }
