@@ -1,6 +1,7 @@
 package com.example.mobileinteracao;
 
 import com.example.banco.GerenciadorLogin;
+import com.example.banco.LoginHelper;
 import com.example.model.Login;
 import com.example.model.Notificacao;
 
@@ -71,7 +72,22 @@ public class CadastroActivity extends Activity {
 		login.setSenha(edtSenha.getText().toString());
 		login.setMatricula(edtSenha.getText().toString());
 		
-		gerenciador.inserir(login.getUsuario(), login.getSenha(), login.getMatricula());
+		
+		Log.i("BUSCANDO...", "VOU BUSCAR");
+		Login loginBusca = new Login();
+		Log.i("TESTE", loginBusca.getUsuario());
+		loginBusca = gerenciador.query(1);
+		if(loginBusca == null){
+			Log.i("VOU INSERIR", "INSERIR");
+			gerenciador.inserir(login.getUsuario(), login.getSenha(), login.getMatricula());
+		}else{
+			Log.i("VOU FAZER UPDATE", "UPDATE");
+			gerenciador.update(login);
+		}
+	   
+	   
+	   
+		//LoginHelper loginHelper = new LoginHelper(this, "SQLite_LOGIN");
 		
 		AlertDialog.Builder alerta = new AlertDialog.Builder(this);
 		alerta.setTitle("Login");			

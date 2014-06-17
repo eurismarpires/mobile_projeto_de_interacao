@@ -38,9 +38,28 @@ public class GerenciadorLogin extends SQLiteOpenHelper {
 
 		getWritableDatabase().insert("login", "usuario", valores);		
 	}
-	public void atualizar(GerenciadorLogin helper, Login login){
-		ContentValues valores = new ContentValues();
-		valores.put("usuario", login.getUsuario());
+	public void update(Login login) {
+		ContentValues values = new ContentValues();
+		values.put("usuario", login.getUsuario());
+		values.put("matricula", login.getMatricula());
+		values.put("senha", login.getSenha());
+		getWritableDatabase().update("login", values,"_id" + "= ?",
+				new String[] { String.valueOf(login.getId()) });		
+	}
+
+	public Login query(int id) {
+		Cursor cursor = getReadableDatabase().query("login",
+				new String[] { "usuario" }, "_id = ?",
+				new String[] { String.valueOf(id) }, null, null, null);
+		if (cursor.moveToNext()) {
+			id = cursor.getInt(cursor.getColumnIndex("_id"));
+			String usuario = cursor.getString(cursor.getColumnIndex("usuario"));
+			String senha = cursor.getString(cursor.getColumnIndex("senha"));
+			String matricula = cursor.getString(cursor.getColumnIndex("matricula"));
+			return new Login(id, usuario,senha,matricula);
+		} else {
+			return null;
+		}
 	}
 	
 	public Cursor obterTodos() {
