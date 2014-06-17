@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.example.model.Notificacao;
+
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;

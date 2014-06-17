@@ -3,6 +3,8 @@ package com.example.mobileinteracao;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import com.example.model.Notificacao;
+
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;

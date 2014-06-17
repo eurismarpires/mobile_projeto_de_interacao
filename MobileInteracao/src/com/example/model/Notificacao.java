@@ -1,4 +1,4 @@
-package com.example.mobileinteracao;
+package com.example.model;
 
 import java.util.Date;
 
