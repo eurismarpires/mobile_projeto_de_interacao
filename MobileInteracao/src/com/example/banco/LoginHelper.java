@@ -17,6 +17,7 @@ public class LoginHelper extends SQLiteOpenHelper {
 	private final String USUARIO = "USUARIO";
 	private final String SENHA = "SENHA";
 	private final String MATRICULA = "MATRICULA";
+	private final String LOGADO = "N";
 
 	public LoginHelper(Context context, String name, CursorFactory factory,
 			int version) {
@@ -47,6 +48,7 @@ public class LoginHelper extends SQLiteOpenHelper {
 		values.put(ID, login.getId());
 		values.put(USUARIO, login.getUsuario());
 		values.put("MATRICULA", MATRICULA);
+		values.put("LOGADO", "N");
 		helper.getWritableDatabase().insert(TABLE_NAME, null, values);
 	}
 
@@ -55,6 +57,7 @@ public class LoginHelper extends SQLiteOpenHelper {
 		values.put(USUARIO, login.getUsuario());
 		values.put(MATRICULA, login.getMatricula());
 		values.put(SENHA, login.getSenha());
+		values.put("LOGADO", login.getLogado());
 		helper.getWritableDatabase().update(TABLE_NAME, values, ID + "= ?",
 				new String[] { String.valueOf(login.getId()) });		
 	}
@@ -65,7 +68,7 @@ public class LoginHelper extends SQLiteOpenHelper {
 				new String[] { String.valueOf(id) }, null, null, null);
 		if (cursor.moveToNext()) {
 			String name = cursor.getString(cursor.getColumnIndex(USUARIO));
-			return new Login(id, USUARIO,SENHA,MATRICULA);
+			return new Login(id, USUARIO,SENHA,MATRICULA,LOGADO );
 		} else {
 			return null;
 		}

@@ -1,5 +1,8 @@
 package com.example.mobileinteracao;
 
+import com.example.banco.GerenciadorLogin;
+import com.example.model.Login;
+
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.AlertDialog;
@@ -7,6 +10,7 @@ import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,25 +35,36 @@ public class LoginActivity extends Activity {
 		String usuario = edtUsuario.getText().toString();
 		String senha = edtSenha.getText().toString();
 
-		if (usuario.equals("eurismar") && senha.equals("123")) {
-			Intent intent = new Intent(this, MainActivity.class);
-			startActivity(intent);
-		} else {
+		GerenciadorLogin gerenciador;
+		gerenciador = new GerenciadorLogin(this);
+		Login loginBusca = new Login();
+		loginBusca = gerenciador.query(1);
+		if (loginBusca == null) {
+			mensagem("Usuário não cadastrado");
+		} else {			 
+			if (usuario.equals(loginBusca.getUsuario()) && senha.equals(loginBusca.getSenha())) {
+				Intent intent = new Intent(this, MainActivity.class);
+				startActivity(intent);
+			} else {
+				mensagem("Usuário ou senha incorretos");
 
-			AlertDialog.Builder alerta = new AlertDialog.Builder(this);
-			alerta.setTitle("Atenção");			
-			alerta.setMessage("Usuário ou senha incorretos");			
-			alerta.setIcon(R.drawable.ic_launcher);
-			alerta.setPositiveButton("OK", null);						
-			alerta.show();
-
+			}
 		}
-
 	}
+
+	public void mensagem(String msg) {
+		AlertDialog.Builder alerta = new AlertDialog.Builder(this);
+		alerta.setTitle("Atenção");
+		alerta.setMessage(msg);
+		alerta.setIcon(R.drawable.ic_launcher);
+		alerta.setPositiveButton("OK", null);
+		alerta.show();
+	}
+
 	public void onClickCadastrar(View v) {
 		Intent intent = new Intent(this, CadastroActivity.class);
-		startActivity(intent);		
-		
+		startActivity(intent);
+
 	}
 
 }

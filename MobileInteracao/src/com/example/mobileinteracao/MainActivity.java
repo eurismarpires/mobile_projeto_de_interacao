@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 import com.example.model.Notificacao;
 
 import android.app.Activity;
@@ -63,5 +64,27 @@ public class MainActivity extends Activity {
 		Intent intent = new Intent(this, CadastroActivity.class);
 		startActivity(intent);		
 	}
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
 
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		int id = item.getItemId();
+		if (id == R.id.action_settings) {
+			Log.i("EURISMAR","Entrou no menu");
+			return true;
+		}else
+		if (id == R.id.sair) {
+			Intent intent = new Intent(Intent.ACTION_MAIN);
+			intent.addCategory(Intent.CATEGORY_HOME);
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(intent);			
+			return true;
+		}		
+		return super.onOptionsItemSelected(item);
+	}	
 }

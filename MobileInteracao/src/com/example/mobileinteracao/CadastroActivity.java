@@ -68,9 +68,10 @@ public class CadastroActivity extends Activity {
 
 	public void onClick(View v){
 		Login login = new Login();
+		login.setId(1);
 		login.setUsuario(edtUsuario.getText().toString());
 		login.setSenha(edtSenha.getText().toString());
-		login.setMatricula(edtSenha.getText().toString());
+		login.setMatricula(edtMatricula.getText().toString());
 		
 		
 		Log.i("BUSCANDO...", "VOU BUSCAR");

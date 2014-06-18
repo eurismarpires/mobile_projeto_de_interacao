@@ -14,5 +14,6 @@
     <string name="title_activity_detalhe_mensagem">DetalheMensagemActivity</string>
     <string name="ContextoDados_onCreate"/>
     <string name="ContextoDados_onUpgrade"/>
+    <string name="sair">Sair</string>
 
 </resources>
