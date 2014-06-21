@@ -9,6 +9,8 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -27,76 +29,89 @@ public class CadastroActivity extends Activity {
 	EditText edtUsuario = null;
 	EditText edtSenha = null;
 	EditText edtMatricula = null;
-	
+	Context context;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_cadastro);
-		
+		context =  getApplicationContext();
+
 		gerenciador = new GerenciadorLogin(this);
-		edtUsuario = (EditText)findViewById(R.id.edtUsuario);
-		edtSenha = (EditText)findViewById(R.id.edtSenha);
-		edtMatricula = (EditText)findViewById(R.id.edtMatricula);
-		
+		edtUsuario = (EditText) findViewById(R.id.edtUsuario);
+		edtSenha = (EditText) findViewById(R.id.edtSenha);
+		edtMatricula = (EditText) findViewById(R.id.edtMatricula);
+
 		cursorLogin = gerenciador.obterTodos();
-		
+
 		int count = cursorLogin.getCount();
-		
-		Log.i("DADOS BANCO","" + count);				
-    	if (cursorLogin != null ) {    		
-    		if  (cursorLogin.moveToFirst()) {
-    			do {
-    				//Get version from Cursor
-    				String usuario = cursorLogin.getString(cursorLogin.getColumnIndex("usuario"));
-    				String senha = cursorLogin.getString(cursorLogin.getColumnIndex("senha"));
-    				String matricula = cursorLogin.getString(cursorLogin.getColumnIndex("matricula"));
-    				
-    				edtUsuario.setText(usuario);
-    				edtSenha.setText(senha);
-    				edtMatricula.setText(matricula);  				
-    			}while (cursorLogin.moveToNext()); //Move to next row
-    		} 
-    	}
-    			
+
+		Log.i("DADOS BANCO", "" + count);
+		if (cursorLogin != null) {
+			if (cursorLogin.moveToFirst()) {
+				do {
+					// Get version from Cursor
+					String usuario = cursorLogin.getString(cursorLogin
+							.getColumnIndex("usuario"));
+					String senha = cursorLogin.getString(cursorLogin
+							.getColumnIndex("senha"));
+					String matricula = cursorLogin.getString(cursorLogin
+							.getColumnIndex("matricula"));
+
+					edtUsuario.setText(usuario);
+					edtSenha.setText(senha);
+					edtMatricula.setText(matricula);
+				} while (cursorLogin.moveToNext()); // Move to next row
+			}
+		}
+
 	}
-	
+
 	@Override
-	protected void onDestroy() {		
+	protected void onDestroy() {
 		super.onDestroy();
 		gerenciador.close();
 	}
 
-	public void onClick(View v){
+	public void onClick(View v) {
 		Login login = new Login();
 		login.setId(1);
 		login.setUsuario(edtUsuario.getText().toString());
 		login.setSenha(edtSenha.getText().toString());
 		login.setMatricula(edtMatricula.getText().toString());
-		
-		
+
 		Log.i("BUSCANDO...", "VOU BUSCAR");
 		Login loginBusca = new Login();
 		Log.i("TESTE", loginBusca.getUsuario());
 		loginBusca = gerenciador.query(1);
-		if(loginBusca == null){
+		if (loginBusca == null) {
 			Log.i("VOU INSERIR", "INSERIR");
-			gerenciador.inserir(login.getUsuario(), login.getSenha(), login.getMatricula());
-		}else{
+			gerenciador.inserir(login.getUsuario(), login.getSenha(),
+					login.getMatricula());
+		} else {
 			Log.i("VOU FAZER UPDATE", "UPDATE");
 			gerenciador.update(login);
 		}
-	   
-	   
-	   
-		//LoginHelper loginHelper = new LoginHelper(this, "SQLite_LOGIN");
-		
+
+		// LoginHelper loginHelper = new LoginHelper(this, "SQLite_LOGIN");
+
 		AlertDialog.Builder alerta = new AlertDialog.Builder(this);
-		alerta.setTitle("Login");			
-		alerta.setMessage("Usuário cadastrado com sucesso!");			
+		alerta.setTitle("Login");
+		alerta.setMessage("Usuário cadastrado com sucesso!");
 		alerta.setIcon(R.drawable.ic_launcher);
-		alerta.setPositiveButton("OK", null);						
+		alerta.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface arg0, int arg1) {
+				Intent intent = new Intent(context, LoginActivity.class);
+				startActivity(intent);		
+
+			}
+		});
 		alerta.show();
+
 		
+
 	}
 
 }
