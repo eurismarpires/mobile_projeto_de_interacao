@@ -21,5 +21,6 @@
     <string name="rem_biblioteca">Biblioteca</string>
     <string name="rem_pro_reitoria">Pro-Reitoria</string>
     <string name="rem_docente">Docente da Disciplina</string>
+    <string name="title_activity_lista">ListaActivity</string>
 
 </resources>

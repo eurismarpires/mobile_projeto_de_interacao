@@ -44,7 +44,7 @@ public class LoginActivity extends Activity {
 			mensagem("Usuário não cadastrado");
 		} else {			 
 			if (usuario.equals(loginBusca.getUsuario()) && senha.equals(loginBusca.getSenha())) {
-				Intent intent = new Intent(this, MainActivity.class);
+				Intent intent = new Intent(this, ListaActivity.class);
 				startActivity(intent);
 			} else {
 				mensagem("Usuário ou senha incorretos");
@@ -62,10 +62,5 @@ public class LoginActivity extends Activity {
 		alerta.show();
 	}
 
-	public void onClickCadastrar(View v) {
-		Intent intent = new Intent(this, CadastroActivity.class);
-		startActivity(intent);
-
-	}
 
 }

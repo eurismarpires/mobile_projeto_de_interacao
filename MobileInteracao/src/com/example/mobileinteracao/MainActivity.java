@@ -31,40 +31,22 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {				
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		setTitle("Notificações");
-		
-		Notificacao n1 = new Notificacao();		
-		n1.setData(new Date());
-		n1.setRemetente("Biblioteca");
-		n1.setMensagem("Devolva o Livro");
-		
-		
-		Notificacao n2 = new Notificacao();		
-		n2.setData(new Date());
-		n2.setRemetente("INF");
-		n2.setMensagem("Prova na semana que vem");		
-		
-		Notificacao n3 = new Notificacao();		
-		n3.setData(new Date());
-		n3.setRemetente("DCE");
-		n3.setMensagem("Este é um teste de notificação para alunos e funcionários da Universidade Federal de Goiás");		
-		
-		
-		List<Notificacao> listaNotificacao = new ArrayList<Notificacao>();
-		
-		
-		listaNotificacao.add(n1);
-		listaNotificacao.add(n2);
-		listaNotificacao.add(n3);
-	    ListView lista = (ListView)findViewById(R.id.listView1);		
-		ListaNotificacoesAdapter adapter = new ListaNotificacoesAdapter(this, listaNotificacao);		
-		lista.setAdapter(adapter);			
+		setTitle("Notificações");				
 	}
 
-	public void onClick(View v){
-		Intent intent = new Intent(this, CadastroActivity.class);
+	public void onClickEntrar(View v){
+		Intent intent = new Intent(this, LoginActivity.class);
+		startActivity(intent);			
+	}
+	public void onClickVisitante(View v){
+		Intent intent = new Intent(this, ListaActivity.class);
 		startActivity(intent);		
 	}
+	public void onClickCadastrar(View v){
+		Intent intent = new Intent(this, CadastroActivity.class);
+		startActivity(intent);			
+	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main, menu);

@@ -6,26 +6,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical" >
-        
-        
-
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="289dp"
-        android:layout_height="106dp"
-        android:layout_margin="15dp"
-        android:layout_weight="0.00"
-        android:src="@drawable/logo" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.02"
-        android:layout_margin="15dp"
-        android:text="Bem vindo ao Academy News. O sistema de notificações da Universidade Federal de Goiás" />
-
+        android:orientation="vertical" >        
     <EditText
         android:id="@+id/edtUsuario"
         android:layout_width="match_parent"
@@ -33,7 +14,10 @@
         android:layout_margin="15dp"
         android:ems="10"
         android:hint="usuário"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress">
+        <requestFocus />        
+    </EditText>    
+     
 
     <EditText
         android:id="@+id/edtLoginSenha"
@@ -44,7 +28,7 @@
         android:hint="Senha"
         android:inputType="textPassword" >
 
-        <requestFocus />
+       
     </EditText>
 
     <Button
@@ -55,19 +39,6 @@
         android:onClick="onClickEntrar"
         android:layout_margin="15dp"
         android:text="@string/entrar" />
-
-    <Button
-        android:id="@+id/cadastrar"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-		  android:layout_margin="15dp"
-        android:onClick="onClickCadastrar"
-        android:text="@string/cadastrar" />        
-        
-        
-        
-        
-        
         
     </LinearLayout>
 
