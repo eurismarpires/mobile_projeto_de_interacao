@@ -12,8 +12,14 @@
     <string name="matricula">Matrícula</string>
     <string name="salvar">Salvar</string>
     <string name="title_activity_detalhe_mensagem">DetalheMensagemActivity</string>
-    <string name="ContextoDados_onCreate"/>
-    <string name="ContextoDados_onUpgrade"/>
+    <string name="ContextoDados_onCreate" />
+    <string name="ContextoDados_onUpgrade" />
     <string name="sair">Sair</string>
+    <string name="title_activity_config">ConfigActivity</string>
+    <string name="rem_coordenador">Coordenador do Curso</string>
+    <string name="rem_direcao_unidade">Direção de Unidade</string>
+    <string name="rem_biblioteca">Biblioteca</string>
+    <string name="rem_pro_reitoria">Pro-Reitoria</string>
+    <string name="rem_docente">Docente da Disciplina</string>
 
 </resources>

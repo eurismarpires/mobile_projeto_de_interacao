@@ -35,21 +35,19 @@ public class CadastroActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_cadastro);
+		setTitle("Cadastro de Usuário");
 		context =  getApplicationContext();
-
+        
 		gerenciador = new GerenciadorLogin(this);
 		edtUsuario = (EditText) findViewById(R.id.edtUsuario);
 		edtSenha = (EditText) findViewById(R.id.edtSenha);
 		edtMatricula = (EditText) findViewById(R.id.edtMatricula);
 
-		cursorLogin = gerenciador.obterTodos();
-
-		int count = cursorLogin.getCount();
-
-		Log.i("DADOS BANCO", "" + count);
+		cursorLogin = gerenciador.obterRegistroLogin();
+		int count = cursorLogin.getCount();		
 		if (cursorLogin != null) {
 			if (cursorLogin.moveToFirst()) {
-				do {
+			//	do {
 					// Get version from Cursor
 					String usuario = cursorLogin.getString(cursorLogin
 							.getColumnIndex("usuario"));
@@ -61,7 +59,7 @@ public class CadastroActivity extends Activity {
 					edtUsuario.setText(usuario);
 					edtSenha.setText(senha);
 					edtMatricula.setText(matricula);
-				} while (cursorLogin.moveToNext()); // Move to next row
+				//} while (cursorLogin.moveToNext()); // Move to next row
 			}
 		}
 
@@ -79,21 +77,15 @@ public class CadastroActivity extends Activity {
 		login.setUsuario(edtUsuario.getText().toString());
 		login.setSenha(edtSenha.getText().toString());
 		login.setMatricula(edtMatricula.getText().toString());
-
-		Log.i("BUSCANDO...", "VOU BUSCAR");
-		Login loginBusca = new Login();
-		Log.i("TESTE", loginBusca.getUsuario());
+		
+		Login loginBusca = new Login();		
 		loginBusca = gerenciador.query(1);
-		if (loginBusca == null) {
-			Log.i("VOU INSERIR", "INSERIR");
+		if (loginBusca == null) {			
 			gerenciador.inserir(login.getUsuario(), login.getSenha(),
 					login.getMatricula());
-		} else {
-			Log.i("VOU FAZER UPDATE", "UPDATE");
+		} else {			
 			gerenciador.update(login);
 		}
-
-		// LoginHelper loginHelper = new LoginHelper(this, "SQLite_LOGIN");
 
 		AlertDialog.Builder alerta = new AlertDialog.Builder(this);
 		alerta.setTitle("Login");

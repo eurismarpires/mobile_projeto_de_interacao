@@ -33,9 +33,11 @@
         <activity
             android:name="com.example.mobileinteracao.MainActivity"
             android:label="@string/title_activity_cadastro" >
-        </activity>        
-        
-        
+        </activity>
+        <activity
+            android:name="com.example.mobileinteracao.ConfigActivity"
+            android:label="@string/title_activity_config" >
+        </activity>
     </application>
 
 </manifest>

@@ -5,7 +5,9 @@
     <TableRow
         android:id="@+id/tableRow1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+         android:layout_margin="15dp"
+         >
 
         <TextView
             android:id="@+id/tvRemetente"
@@ -26,7 +28,9 @@
     <TableRow
         android:id="@+id/tableRow2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+         android:layout_margin="15dp"
+         >
 
         <TextView
             android:id="@+id/tvData"
@@ -49,7 +53,9 @@
     <TableRow
         android:id="@+id/tableRow3"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+         android:layout_margin="15dp"
+         >
 
         <TextView
             android:id="@+id/tvMensagem"
@@ -70,6 +76,7 @@
         android:id="@+id/btnSalvar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+         android:layout_margin="15dp"
         android:text="@string/salvar"
         android:onClick="onClick" />
 

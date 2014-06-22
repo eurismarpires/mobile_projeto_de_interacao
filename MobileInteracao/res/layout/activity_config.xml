@@ -1,0 +1,54 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.mobileinteracao.ConfigActivity"
+    tools:ignore="MergeRootFrame" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="Receber Notificações dos Remetentes:" />
+
+        <CheckBox
+            android:id="@+id/cbCoordenador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rem_coordenador" />
+
+        <CheckBox
+            android:id="@+id/cbDirecao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rem_direcao_unidade" />
+
+        <CheckBox
+            android:id="@+id/cbBiblioteca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rem_biblioteca" />
+
+        <CheckBox
+            android:id="@+id/cbProReitoria"
+            android:layout_width="139dp"
+            android:layout_height="wrap_content"
+            android:text="@string/rem_pro_reitoria" />
+
+        <CheckBox
+            android:id="@+id/cbDocente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rem_docente" />
+
+    </LinearLayout>
+
+</FrameLayout>
+
