@@ -1,14 +1,19 @@
 package com.example.mobileinteracao;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.example.adapter.ListaNotificacoesAdapter;
+import com.example.banco.DadosFicticios;
+import com.example.banco.GerenciadorNotificacoes;
 import com.example.model.Notificacao;
 
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,45 +24,34 @@ import android.widget.ListView;
 import android.os.Build;
 
 public class ListaActivity extends Activity {
+	Context context;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lista);
-		criarLista();						
+		context = getApplicationContext();
+		criarLista();
 	}
 
-	public void criarLista(){
-		Notificacao n1 = new Notificacao();		
-		n1.setData(new Date());
-		n1.setRemetente("Biblioteca");
-		n1.setMensagem("Devolva o Livro");
-		
-		
-		Notificacao n2 = new Notificacao();		
-		n2.setData(new Date());
-		n2.setRemetente("INF");
-		n2.setMensagem("Prova na semana que vem");		
-		
-		Notificacao n3 = new Notificacao();		
-		n3.setData(new Date());
-		n3.setRemetente("DCE");
-		n3.setMensagem("Este é um teste de notificação para alunos e funcionários da Universidade Federal de Goiás");		
-		
-		
+	public void criarLista() {
+
 		List<Notificacao> listaNotificacao = new ArrayList<Notificacao>();
-		
-		
-		listaNotificacao.add(n1);
-		listaNotificacao.add(n2);
-		listaNotificacao.add(n3);
-	    ListView lista = (ListView)findViewById(R.id.listView1);		
-		ListaNotificacoesAdapter adapter = new ListaNotificacoesAdapter(this, listaNotificacao);		
-		lista.setAdapter(adapter);			
+
+		DadosFicticios.gerarNotificacoes(context);
+		GerenciadorNotificacoes g = new GerenciadorNotificacoes(context);
+		listaNotificacao = g.listar();
+
+		ListView lista = (ListView) findViewById(R.id.listView1);
+		ListaNotificacoesAdapter adapter = new ListaNotificacoesAdapter(this,
+				listaNotificacao);
+		lista.setAdapter(adapter);
+
 	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		
+
 		getMenuInflater().inflate(R.menu.lista, menu);
 		return true;
 	}
@@ -70,6 +64,5 @@ public class ListaActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
 
 }

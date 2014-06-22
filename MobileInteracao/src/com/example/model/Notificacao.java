@@ -3,15 +3,16 @@ package com.example.model;
 import java.util.Date;
 
 public class Notificacao 	{
- 	private Date data;
+	private Long id;
+ 	private String data;
 	private String remetente;
 	private String mensagem;	
-	private Boolean lida;
+	private Integer lida;
 	private String tipo; //Aviso de avaliação, Notas e Frequencias, aviso de vencimentos de emprestimos biblioteca, comunicação geral
-	public Date getData() {
+	public String getData() {
 		return data;
 	}
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 	public String getRemetente() {
@@ -27,10 +28,10 @@ public class Notificacao 	{
 		this.mensagem = mensagem;
 	}
 
-	public Boolean getLida() {
+	public Integer getLida() {
 		return lida;
 	}
-	public void setLida(Boolean lida) {
+	public void setLida(Integer lida) {
 		this.lida = lida;
 	}
 	
@@ -40,13 +41,20 @@ public class Notificacao 	{
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	@Override
 	public String toString() {
-		return "Notificacao [data=" + data + ", remetente=" + remetente
-				+ ", mensagem=" + mensagem + ", lida=" + lida + ", tipo="
-				+ tipo + "]";
+		return "Notificacao [id=" + id + ", data=" + data + ", remetente="
+				+ remetente + ", mensagem=" + mensagem + ", lida=" + lida
+				+ ", tipo=" + tipo + "]";
 	}
-
+	
+	
 	
 
 	

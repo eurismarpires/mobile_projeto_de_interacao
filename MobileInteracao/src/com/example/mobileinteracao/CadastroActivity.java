@@ -1,7 +1,6 @@
 package com.example.mobileinteracao;
 
 import com.example.banco.GerenciadorLogin;
-import com.example.banco.LoginHelper;
 import com.example.model.Login;
 import com.example.model.Notificacao;
 

@@ -1,8 +1,12 @@
-package com.example.mobileinteracao;
+package com.example.adapter;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import com.example.mobileinteracao.DetalheMensagemActivity;
+import com.example.mobileinteracao.R;
+import com.example.mobileinteracao.R.id;
+import com.example.mobileinteracao.R.layout;
 import com.example.model.Notificacao;
 
 import android.content.Context;
@@ -41,16 +45,16 @@ public class ListaNotificacoesAdapter extends ArrayAdapter<Notificacao> {
 		TextView tvMensagem = (TextView) view.findViewById(R.id.tvMensagem);
 		tvMensagem.setText(notificacao.getMensagem());
 
-		TextView tvData = (TextView) view.findViewById(R.id.tvData);
+	//	TextView tvData = (TextView) view.findViewById(R.id.tvData);
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
-		tvData.setText("" + sdf.format(notificacao.getData()));
+	//	tvData.setText("" + sdf.format(notificacao.getData()));
 
 		final Intent intent = new Intent(context, DetalheMensagemActivity.class);
 		intent.putExtra("mensagem", notificacao.getMensagem());
 		intent.putExtra("remetente", notificacao.getRemetente());
-		intent.putExtra("data", sdf.format(notificacao.getData()));
+		//intent.putExtra("data", sdf.format(notificacao.getData()));
 		tvMensagem.setOnClickListener(new View.OnClickListener() {
 
 			@Override

@@ -8,7 +8,7 @@ public class Login implements Serializable{
 	private String usuario = "";
 	private String senha = "";
 	private String matricula = "";
-	private String logado = "";
+	
 	
 	public int getId() {
 		return id;
@@ -39,25 +39,17 @@ public class Login implements Serializable{
 	public Login() {
 		super();		
 	}
-	public Login(int id, String usuario, String senha, String matricula, String logado) {
+	public Login(int id, String usuario, String senha, String matricula) {
 		super();
 		this.id = id;
 		this.usuario = usuario;
 		this.senha = senha;
-		this.matricula = matricula;
-		this.logado = logado;
+		this.matricula = matricula;		
 	}
 	@Override
 	public String toString() {		
 		return super.toString();
 	}
-	public String getLogado() {
-		return logado;
-	}
-	public void setLogado(String logado) {
-		this.logado = logado;
-	}
-	
 	
 
 	

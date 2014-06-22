@@ -39,7 +39,9 @@ public class LoginActivity extends Activity {
 		GerenciadorLogin gerenciador;
 		gerenciador = new GerenciadorLogin(this);
 		Login loginBusca = new Login();
+		
 		loginBusca = gerenciador.query(1);
+		
 		if (loginBusca == null) {
 			mensagem("Usuário não cadastrado");
 		} else {			 

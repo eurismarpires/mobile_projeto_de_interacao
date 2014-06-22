@@ -11,9 +11,9 @@ import android.util.Log;
 
 public class GerenciadorLogin extends SQLiteOpenHelper {
 	
-	private static final String NOME_BANCO = "mobile_interacao.db";
+	private static final String NOME_BANCO = "login.db";
 	private static final int VERSAO_SCHEMA = 1;
-
+	private static final String TAG = "GERENCIADOR_LOGIN";
 	public GerenciadorLogin(Context context) {
 		super(context, NOME_BANCO, null, VERSAO_SCHEMA);		
 	}
@@ -21,7 +21,7 @@ public class GerenciadorLogin extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL("CREATE TABLE login (_id INTEGER PRIMARY KEY," +
-				" usuario TEXT, senha TEXT, matricula TEXT, logado TEXT);");
+				" usuario TEXT, senha TEXT, matricula TEXT);");
 	}
 
 	@Override
@@ -34,8 +34,7 @@ public class GerenciadorLogin extends SQLiteOpenHelper {
 		valores.put("_id", 1);
 		valores.put("usuario", usuario);
 		valores.put("senha", senha);
-		valores.put("matricula", matricula);
-		valores.put("logado", "N");
+		valores.put("matricula", matricula);		
 		getWritableDatabase().insert("login", "usuario", valores);		
 	}
 	public void update(Login login) {
@@ -45,32 +44,32 @@ public class GerenciadorLogin extends SQLiteOpenHelper {
 		values.put("senha", login.getSenha());
 		getWritableDatabase().update("login", values,"_id" + "= ?",
 				new String[] { String.valueOf(login.getId()) });	
-		Log.i("EURISMAR", "ATUALIZOU O BANCO " + login.getUsuario() + "|" + login.getId() + "|" + login.getMatricula());
+		Log.i(TAG, "ATUALIZOU O BANCO " + login.getUsuario() + "|" + login.getId() + "|" + login.getMatricula());
 		
 	}
 
 	public Login query(int id) {
+		Log.i(TAG,"buscando o login " + id);
 		Cursor cursor = getReadableDatabase().query("login",
-				new String[]{"_id","usuario","senha","matricula","logado"}, "_id = ?",
+				new String[]{"_id","usuario","senha","matricula"}, "_id = ?",
 				new String[] { String.valueOf(id) }, null, null, null);
 		if (cursor.moveToNext()) {
 			id = cursor.getInt(cursor.getColumnIndex("_id"));
 			String usuario = cursor.getString(cursor.getColumnIndex("usuario"));
 			String senha = cursor.getString(cursor.getColumnIndex("senha"));
-			String matricula = cursor.getString(cursor.getColumnIndex("matricula"));
-			String logado = cursor.getString(cursor.getColumnIndex("logado"));
-			return new Login(id, usuario,senha,matricula, logado);
+			String matricula = cursor.getString(cursor.getColumnIndex("matricula"));			
+			return new Login(id, usuario,senha,matricula);
 		} else {
 			return null;
 		}
 	}
 	
 	public Cursor obterTodos() {
-		return getReadableDatabase().rawQuery("select _id, usuario, senha, matricula, logado " +
+		return getReadableDatabase().rawQuery("select _id, usuario, senha, matricula " +
 				" FROM login ORDER BY usuario", null);
 	}
 	public Cursor obterRegistroLogin() {
-		return getReadableDatabase().rawQuery("select _id, usuario, senha, matricula,logado " +
+		return getReadableDatabase().rawQuery("select _id, usuario, senha, matricula " +
 				" FROM login WHERE _id = 1", null);
 	}	
 	public String obterLogin(Cursor c) {
