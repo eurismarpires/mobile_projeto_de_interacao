@@ -32,7 +32,7 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>            
+            </intent-filter>
         </activity>
         <activity
             android:name="com.example.mobileinteracao.ConfigActivity"
@@ -41,6 +41,10 @@
         <activity
             android:name="com.example.mobileinteracao.ListaActivity"
             android:label="@string/title_activity_lista" >
+        </activity>
+        <activity
+            android:name="com.example.mobileinteracao.TestActivity"
+            android:label="@string/title_activity_test" >
         </activity>
     </application>
 

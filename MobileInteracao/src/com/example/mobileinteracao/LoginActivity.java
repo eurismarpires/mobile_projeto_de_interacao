@@ -40,11 +40,12 @@ public class LoginActivity extends Activity {
 		gerenciador = new GerenciadorLogin(this);
 		Login loginBusca = new Login();
 		
-		loginBusca = gerenciador.query(1);
+		loginBusca = gerenciador.getLogin(1);
 		
 		if (loginBusca == null) {
 			mensagem("Usuário não cadastrado");
-		} else {			 
+		} else {	
+			Log.i("LOGIN","USUARIO="+loginBusca.getUsuario() + "|" + "senha:" + loginBusca.getSenha());
 			if (usuario.equals(loginBusca.getUsuario()) && senha.equals(loginBusca.getSenha())) {
 				Intent intent = new Intent(this, ListaActivity.class);
 				startActivity(intent);

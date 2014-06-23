@@ -35,39 +35,27 @@ public class CadastroActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_cadastro);
 		setTitle("Cadastro de Usuário");
-		context =  getApplicationContext();
-        
-		gerenciador = new GerenciadorLogin(this);
+		context = getApplicationContext();
+
 		edtUsuario = (EditText) findViewById(R.id.edtUsuario);
 		edtSenha = (EditText) findViewById(R.id.edtSenha);
 		edtMatricula = (EditText) findViewById(R.id.edtMatricula);
 
-		cursorLogin = gerenciador.obterRegistroLogin();
-		int count = cursorLogin.getCount();		
-		if (cursorLogin != null) {
-			if (cursorLogin.moveToFirst()) {
-			//	do {
-					// Get version from Cursor
-					String usuario = cursorLogin.getString(cursorLogin
-							.getColumnIndex("usuario"));
-					String senha = cursorLogin.getString(cursorLogin
-							.getColumnIndex("senha"));
-					String matricula = cursorLogin.getString(cursorLogin
-							.getColumnIndex("matricula"));
+		gerenciador = new GerenciadorLogin(this);
+		Login login = new Login();
+		login = gerenciador.getLogin(1);
+		if (login != null) {
 
-					edtUsuario.setText(usuario);
-					edtSenha.setText(senha);
-					edtMatricula.setText(matricula);
-				//} while (cursorLogin.moveToNext()); // Move to next row
-			}
+			edtUsuario.setText(login.getUsuario());
+			edtSenha.setText(login.getSenha());
+			edtMatricula.setText(login.getMatricula());
 		}
-
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		gerenciador.close();
+		gerenciador.fecharDB();
 	}
 
 	public void onClick(View v) {
@@ -76,16 +64,14 @@ public class CadastroActivity extends Activity {
 		login.setUsuario(edtUsuario.getText().toString());
 		login.setSenha(edtSenha.getText().toString());
 		login.setMatricula(edtMatricula.getText().toString());
-		
-		Login loginBusca = new Login();		
-		loginBusca = gerenciador.query(1);
-		if (loginBusca == null) {			
-			gerenciador.inserir(login.getUsuario(), login.getSenha(),
-					login.getMatricula());
-		} else {			
-			gerenciador.update(login);
-		}
 
+		Login loginBusca = new Login();
+		loginBusca = gerenciador.getLogin(1);
+		if (loginBusca == null) {
+			gerenciador.insertLogin(login);
+		} else {
+			gerenciador.update(login);
+		}		
 		AlertDialog.Builder alerta = new AlertDialog.Builder(this);
 		alerta.setTitle("Login");
 		alerta.setMessage("Usuário cadastrado com sucesso!");
@@ -95,13 +81,11 @@ public class CadastroActivity extends Activity {
 			@Override
 			public void onClick(DialogInterface arg0, int arg1) {
 				Intent intent = new Intent(context, LoginActivity.class);
-				startActivity(intent);		
+				startActivity(intent);
 
 			}
 		});
 		alerta.show();
-
-		
 
 	}
 

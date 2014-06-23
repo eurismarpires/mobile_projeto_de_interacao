@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.example.adapter.ListaNotificacoesAdapter;
-import com.example.banco.DadosFicticios;
+import com.example.banco.DadosExemplo;
 import com.example.banco.GerenciadorNotificacoes;
 import com.example.model.Notificacao;
 
@@ -31,6 +31,7 @@ public class ListaActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lista);
 		context = getApplicationContext();
+		setTitle("Notificações");
 		criarLista();
 	}
 
@@ -38,9 +39,9 @@ public class ListaActivity extends Activity {
 
 		List<Notificacao> listaNotificacao = new ArrayList<Notificacao>();
 
-		DadosFicticios.gerarNotificacoes(context);
+		DadosExemplo.gerarNotificacoes(context);
 		GerenciadorNotificacoes g = new GerenciadorNotificacoes(context);
-		listaNotificacao = g.listar();
+		listaNotificacao = g.getNotificacoes();
 
 		ListView lista = (ListView) findViewById(R.id.listView1);
 		ListaNotificacoesAdapter adapter = new ListaNotificacoesAdapter(this,

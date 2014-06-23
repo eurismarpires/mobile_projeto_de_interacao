@@ -40,21 +40,25 @@ public class ListaNotificacoesAdapter extends ArrayAdapter<Notificacao> {
 		}
 
 		TextView tvRemetente = (TextView) view.findViewById(R.id.tvRemetente);
-		tvRemetente.setText(notificacao.getRemetente());
+		tvRemetente.setText(notificacao.getRemetente().getNome());
 
 		TextView tvMensagem = (TextView) view.findViewById(R.id.tvMensagem);
 		tvMensagem.setText(notificacao.getMensagem());
 
-	//	TextView tvData = (TextView) view.findViewById(R.id.tvData);
+		
 
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-
-	//	tvData.setText("" + sdf.format(notificacao.getData()));
-
+	//	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		Log.i("LISTA", "ATÉ AKI CHEGOU 1");
+		TextView tvData = (TextView) view.findViewById(R.id.tvData);
+		Log.i("LISTA", "ATÉ AKI CHEGOU 2");
+		tvData.setText(notificacao.getData());
+		Log.i("LISTA", "ATÉ AKI CHEGOU 3");
+		
 		final Intent intent = new Intent(context, DetalheMensagemActivity.class);
+		
 		intent.putExtra("mensagem", notificacao.getMensagem());
-		intent.putExtra("remetente", notificacao.getRemetente());
-		//intent.putExtra("data", sdf.format(notificacao.getData()));
+		intent.putExtra("remetente", notificacao.getRemetente().getNome());
+		intent.putExtra("data", notificacao.getData());
 		tvMensagem.setOnClickListener(new View.OnClickListener() {
 
 			@Override

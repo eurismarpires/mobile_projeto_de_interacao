@@ -4,26 +4,54 @@ import java.util.Date;
 
 public class Notificacao 	{
 	private Long id;
- 	private String data;
-	private String remetente;
+ 	private String data; 	
+	private Remetente remetente;
 	private String mensagem;	
-	private Integer lida;
-	private String tipo; //Aviso de avaliação, Notas e Frequencias, aviso de vencimentos de emprestimos biblioteca, comunicação geral
+	private Integer lida;	
+	private Tipo tipo; //Aviso de avaliação, Notas e Frequencias, aviso de vencimentos de emprestimos biblioteca, comunicação geral
+	
+	public Notificacao() {
+		super();
+	}
+
+	public Notificacao(String data, Remetente remetente, String mensagem,
+			Integer lida, Tipo tipo) {
+		super();
+		this.data = data;
+		this.remetente = remetente;
+		this.mensagem = mensagem;
+		this.lida = lida;
+		this.tipo = tipo;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public String getData() {
 		return data;
 	}
+
 	public void setData(String data) {
 		this.data = data;
 	}
-	public String getRemetente() {
+
+	public Remetente getRemetente() {
 		return remetente;
 	}
-	public void setRemetente(String remetente) {
+
+	public void setRemetente(Remetente remetente) {
 		this.remetente = remetente;
-	} 
+	}
+
 	public String getMensagem() {
 		return mensagem;
 	}
+
 	public void setMensagem(String mensagem) {
 		this.mensagem = mensagem;
 	}
@@ -31,29 +59,22 @@ public class Notificacao 	{
 	public Integer getLida() {
 		return lida;
 	}
+
 	public void setLida(Integer lida) {
 		this.lida = lida;
 	}
-	
-	public String getTipo() {
+
+	public Tipo getTipo() {
 		return tipo;
 	}
-	public void setTipo(String tipo) {
+
+	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
 	}
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	@Override
-	public String toString() {
-		return "Notificacao [id=" + id + ", data=" + data + ", remetente="
-				+ remetente + ", mensagem=" + mensagem + ", lida=" + lida
-				+ ", tipo=" + tipo + "]";
-	}
-	
+
+
+
+
 	
 	
 
