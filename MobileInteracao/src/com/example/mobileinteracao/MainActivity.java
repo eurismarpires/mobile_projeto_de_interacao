@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 
+
+import com.example.banco.DadosExemplo;
 import com.example.model.Notificacao;
 
 import android.app.Activity;
@@ -39,6 +41,7 @@ public class MainActivity extends Activity {
 		startActivity(intent);			
 	}
 	public void onClickVisitante(View v){
+		DadosExemplo.gerarNotificacoes(getApplicationContext());
 		Intent intent = new Intent(this, ListaActivity.class);
 		startActivity(intent);		
 	}

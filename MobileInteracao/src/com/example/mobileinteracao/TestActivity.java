@@ -34,25 +34,7 @@ public class TestActivity extends Activity {
 
 		
 	}
-	public void onClick(View v){
-		
-		Log.i(TAG, "VOU TENTAR INSERIR LOGIN");
-		Login login = new Login();
-		login.setMatricula("123455");
-		login.setSenha("123");
-		login.setUsuario("Eurismar");
-		GerenciadorLogin gLogin = new GerenciadorLogin(this);
-	    long login1_id = gLogin.insertLogin(login);
-		Log.i(TAG, "INSERIU LOGIN " + login1_id);
-		
-		
-		Log.i(TAG, "VOU TENTAR INSERIR TIPO");
-		Tipo tipo = new Tipo();
-		tipo.setDescricao("descricao teste");	
-		long tipo1_id = gLogin.insertTipo(tipo);
-		Log.i(TAG, "INSERIU TIPO " + tipo1_id);		
-		
-	}
+
 	public void inserir(View v){
 		Remetente r1 = new Remetente();
 		r1.setNome("Eurismar");
@@ -88,7 +70,13 @@ public class TestActivity extends Activity {
 	public void deletar(View v){		
 		new GerenciadorRemetente(this).deletarTodos();
 	}
-	public void buscar1(View v){}
+	public void buscar1(View v){
+	    GerenciadorTipo gt = new GerenciadorTipo(this);
+	    Tipo t = new Tipo();
+	    t = gt.getTipo(1);
+	    
+	    Log.i(TAG, t.getDescricao());
+	}
 	public void buscarTodos(View v){}
 	
 	@Override

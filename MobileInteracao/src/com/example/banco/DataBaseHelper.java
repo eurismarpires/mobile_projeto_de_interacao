@@ -18,7 +18,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 	// Database Version
 	private static final int DATABASE_VERSION = 1;
 	// Database Name
-	private static final String DATABASE_NAME = "banco.db";
+	private static final String DATABASE_NAME = "notificacoes.db";
 
 	public DataBaseHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -31,15 +31,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 	}
 
 	@Override
-	public void onCreate(SQLiteDatabase db) {
-		Log.i(TAG, "CREATE TABLE LOGIN");
-		db.execSQL("CREATE TABLE login (_id INTEGER PRIMARY KEY, matricula TEXT, senha TEXT, usuario TEXT)");
-		Log.i(TAG, "CREATE TABLE TIPO");
-		db.execSQL("CREATE TABLE tipo (_id INTEGER PRIMARY KEY, descricao TEXT)");
-		Log.i(TAG, "CREATE TABLE REMETENTE");
-		db.execSQL("CREATE TABLE remetente (_id INTEGER PRIMARY KEY, nome TEXT)");
-		Log.i(TAG, "CREATE TABLE NOTIFICACAO");
-		db.execSQL("CREATE TABLE notificacao (_id INTEGER, lida INTEGER,data TEXT, mensagem TEXT, id_remetente INTEGER, id_tipo INTEGER)");
+	public void onCreate(SQLiteDatabase db) {		
+		db.execSQL("CREATE TABLE login (_id INTEGER PRIMARY KEY, matricula TEXT, senha TEXT, usuario TEXT)");		
+		db.execSQL("CREATE TABLE tipo (_id INTEGER PRIMARY KEY, descricao TEXT)");		
+		db.execSQL("CREATE TABLE remetente (_id INTEGER PRIMARY KEY, nome TEXT)");		
+		db.execSQL("CREATE TABLE notificacao (_id INTEGER PRIMARY KEY, lida INTEGER,data TEXT, mensagem TEXT, id_remetente INTEGER, id_tipo INTEGER)");
 	}
 
 	@Override

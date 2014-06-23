@@ -23,5 +23,6 @@
     <string name="rem_docente">Docente da Disciplina</string>
     <string name="title_activity_lista">ListaActivity</string>
     <string name="title_activity_test">TestActivity</string>
+    <string name="nao_lida">Marcar como não lida</string>
 
 </resources>

@@ -45,9 +45,9 @@ public class GerenciadorLogin {
 		db.update("login", values, "_id" + "= ?",
 				new String[] { String.valueOf(login.getId()) });
 	}
-
 	public Login getLogin(long loginId) {
-		String selectQuery = "SELECT  * FROM login WHERE _id = " + loginId;
+	//	String selectQuery = "SELECT * FROM login WHERE _id = " + loginId;
+		String selectQuery = "SELECT * FROM login WHERE _id = 1";
 		Log.e(TAG, selectQuery);
 		Cursor c = db.rawQuery(selectQuery, null);
 		if (c != null)
@@ -56,16 +56,9 @@ public class GerenciadorLogin {
 		Login login = new Login();
 		login.setId(c.getInt(c.getColumnIndex("_id")));
 		login.setMatricula((c.getString(c.getColumnIndex("matricula"))));
-		login.setUsuario(c.getString(c.getColumnIndex("usuario")));
-		login.setSenha(c.getString(c.getColumnIndex("senha")));
+		login.setSenha((c.getString(c.getColumnIndex("senha"))));
+		login.setUsuario((c.getString(c.getColumnIndex("usuario"))));			
 		return login;
-	}
-
-	public long insertTipo(Tipo tipo) {
-		ContentValues values = new ContentValues();
-		values.put("descricao", tipo.getDescricao());
-		long tipo_id = db.insert("tipo", null, values);
-		return tipo_id;
 	}
 
 	public void fecharDB() {

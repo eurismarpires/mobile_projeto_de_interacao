@@ -3,7 +3,7 @@ package com.example.model;
 import java.util.Date;
 
 public class Notificacao 	{
-	private Long id;
+	private Integer id;
  	private String data; 	
 	private Remetente remetente;
 	private String mensagem;	
@@ -24,11 +24,11 @@ public class Notificacao 	{
 		this.tipo = tipo;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

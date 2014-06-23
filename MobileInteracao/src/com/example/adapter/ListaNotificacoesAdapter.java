@@ -11,6 +11,7 @@ import com.example.model.Notificacao;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,21 +42,24 @@ public class ListaNotificacoesAdapter extends ArrayAdapter<Notificacao> {
 
 		TextView tvRemetente = (TextView) view.findViewById(R.id.tvRemetente);
 		tvRemetente.setText(notificacao.getRemetente().getNome());
-
+		
 		TextView tvMensagem = (TextView) view.findViewById(R.id.tvMensagem);
 		tvMensagem.setText(notificacao.getMensagem());
-
 		
-
-	//	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-		Log.i("LISTA", "ATÉ AKI CHEGOU 1");
+		if(notificacao.getLida() == 0){
+			tvMensagem.setTypeface(null,Typeface.BOLD);
+		}else{
+			tvMensagem.setTypeface(null,Typeface.NORMAL);
+		}
+		
 		TextView tvData = (TextView) view.findViewById(R.id.tvData);
-		Log.i("LISTA", "ATÉ AKI CHEGOU 2");
 		tvData.setText(notificacao.getData());
-		Log.i("LISTA", "ATÉ AKI CHEGOU 3");
+		
 		
 		final Intent intent = new Intent(context, DetalheMensagemActivity.class);
-		
+		String id = notificacao.getId().toString();
+		Log.i("ADAPTER", "id = " + id);
+		intent.putExtra("id", id);		
 		intent.putExtra("mensagem", notificacao.getMensagem());
 		intent.putExtra("remetente", notificacao.getRemetente().getNome());
 		intent.putExtra("data", notificacao.getData());

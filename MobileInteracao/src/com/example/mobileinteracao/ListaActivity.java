@@ -15,6 +15,7 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,7 +26,7 @@ import android.os.Build;
 
 public class ListaActivity extends Activity {
 	Context context;
-
+	private static String TAG = "ListaActivity";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -35,19 +36,31 @@ public class ListaActivity extends Activity {
 		criarLista();
 	}
 
-	public void criarLista() {
-
-		List<Notificacao> listaNotificacao = new ArrayList<Notificacao>();
-
-		DadosExemplo.gerarNotificacoes(context);
+	public void criarLista() {				
 		GerenciadorNotificacoes g = new GerenciadorNotificacoes(context);
+		
+		List<Notificacao> listaNotificacao = new ArrayList<Notificacao>();
 		listaNotificacao = g.getNotificacoes();
-
+		
 		ListView lista = (ListView) findViewById(R.id.listView1);
 		ListaNotificacoesAdapter adapter = new ListaNotificacoesAdapter(this,
 				listaNotificacao);
 		lista.setAdapter(adapter);
 
+	}
+
+	@Override
+	protected void onStart() {		
+		super.onStart();
+		GerenciadorNotificacoes g = new GerenciadorNotificacoes(context);
+		
+		List<Notificacao> listaNotificacao = new ArrayList<Notificacao>();
+		listaNotificacao = g.getNotificacoes();
+		
+		ListView lista = (ListView) findViewById(R.id.listView1);
+		ListaNotificacoesAdapter adapter = new ListaNotificacoesAdapter(this,
+				listaNotificacao);
+		lista.setAdapter(adapter);		
 	}
 
 	@Override

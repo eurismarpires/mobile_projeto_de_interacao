@@ -34,7 +34,7 @@ public class DadosExemplo {
 		Tipo t1 = new Tipo("Aviso de avaliação");
 		Tipo t2 = new Tipo("Notas e Frequencias");
 		Tipo t3 = new Tipo("aviso de vencimentos de emprestimos biblioteca");
-		Tipo t4 = new Tipo("Comunicação Geral");
+		Tipo t4 = new Tipo("Comunicação Geral - Notificações públicas");		
 		GerenciadorTipo gt = new GerenciadorTipo(context);
 		gt.deletarTodos();
 		t1.setId(gt.insert(t1));
