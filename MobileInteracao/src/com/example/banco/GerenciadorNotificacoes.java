@@ -107,6 +107,38 @@ public class GerenciadorNotificacoes {
 	 
 	    return remetentes;
 	}
+	public List<Notificacao> getNotificacoesVisitante() {
+	    List<Notificacao> remetentes = new ArrayList<Notificacao>();
+	    String selectQuery = "SELECT * FROM notificacao WHERE id_tipo = 4";	 
+	    Log.e(TAG, selectQuery);	 	    
+	    Cursor c = db.rawQuery(selectQuery, null);
+	 	    
+	    if (c.moveToFirst()) {
+	        do {
+	        	Notificacao n = new Notificacao();	        		        	 
+	        	n.setId(c.getInt(c.getColumnIndex("_id")));
+	        	
+	            n.setData(c.getString(c.getColumnIndex("data")));
+	            n.setLida(c.getInt(c.getColumnIndex("lida")));
+	            n.setMensagem(c.getString(c.getColumnIndex("mensagem")));
+	            
+	            //busca o remetente da mensagem	        	
+				GerenciadorRemetente gr = new GerenciadorRemetente(context);
+				Remetente r = new Remetente();
+				r = gr.getRemetente(c.getInt(c.getColumnIndex("id_remetente")));
+				n.setRemetente(r);
+	            
+				//busca o tipo da mensagem
+				GerenciadorTipo gt = new GerenciadorTipo(context);
+				Tipo t = new Tipo();
+				t = gt.getTipo(c.getInt(c.getColumnIndex("id_tipo")));	
+				n.setTipo(t);
+	        	remetentes.add(n);
+	        } while (c.moveToNext());
+	    }
+	 
+	    return remetentes;
+	}	
 	public Notificacao getNotificacao(long idNotificacao) {
 		String selectQuery = "SELECT * FROM notificacao WHERE _id = " + idNotificacao;
 		Log.e(TAG, selectQuery);

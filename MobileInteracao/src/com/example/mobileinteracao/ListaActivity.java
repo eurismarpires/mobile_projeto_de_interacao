@@ -27,12 +27,20 @@ import android.os.Build;
 public class ListaActivity extends Activity {
 	Context context;
 	private static String TAG = "ListaActivity";
+	private static Boolean visitante;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lista);
 		context = getApplicationContext();
 		setTitle("Notificações");
+		
+		Bundle extras = getIntent().getExtras();
+		if (extras != null) {
+		    visitante  = extras.getBoolean("visitante");
+		}else{
+			visitante = false;
+		}
 		criarLista();
 	}
 
@@ -40,7 +48,12 @@ public class ListaActivity extends Activity {
 		GerenciadorNotificacoes g = new GerenciadorNotificacoes(context);
 		
 		List<Notificacao> listaNotificacao = new ArrayList<Notificacao>();
-		listaNotificacao = g.getNotificacoes();
+		if(visitante){
+			listaNotificacao = g.getNotificacoesVisitante();
+		}else{
+			listaNotificacao = g.getNotificacoes();	
+		}
+		
 		
 		ListView lista = (ListView) findViewById(R.id.listView1);
 		ListaNotificacoesAdapter adapter = new ListaNotificacoesAdapter(this,
@@ -55,7 +68,11 @@ public class ListaActivity extends Activity {
 		GerenciadorNotificacoes g = new GerenciadorNotificacoes(context);
 		
 		List<Notificacao> listaNotificacao = new ArrayList<Notificacao>();
-		listaNotificacao = g.getNotificacoes();
+		if(visitante){
+			listaNotificacao = g.getNotificacoesVisitante();
+		}else{
+			listaNotificacao = g.getNotificacoes();	
+		}		
 		
 		ListView lista = (ListView) findViewById(R.id.listView1);
 		ListaNotificacoesAdapter adapter = new ListaNotificacoesAdapter(this,

@@ -43,6 +43,7 @@ public class MainActivity extends Activity {
 	public void onClickVisitante(View v){
 		DadosExemplo.gerarNotificacoes(getApplicationContext());
 		Intent intent = new Intent(this, ListaActivity.class);
+		intent.putExtra("visitante", true);
 		startActivity(intent);		
 	}
 	public void onClickCadastrar(View v){
