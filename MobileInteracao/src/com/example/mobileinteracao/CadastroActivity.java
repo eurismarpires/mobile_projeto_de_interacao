@@ -65,11 +65,11 @@ public class CadastroActivity extends Activity {
 		login.setSenha(edtSenha.getText().toString());
 		login.setMatricula(edtMatricula.getText().toString());
 
-		Login loginBusca = new Login();
-		loginBusca = gerenciador.getLogin(1);
-		if (loginBusca == null) {
+		
+		Login loginBusca = gerenciador.getLogin(1);
+		if (loginBusca.getId() != 1) {
 			gerenciador.insertLogin(login);
-		} else {
+		}else {
 			gerenciador.update(login);
 		}		
 		AlertDialog.Builder alerta = new AlertDialog.Builder(this);

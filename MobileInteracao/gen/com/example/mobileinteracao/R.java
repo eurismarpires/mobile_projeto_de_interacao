@@ -90,25 +90,26 @@ public final class R {
     public static final class string {
         public static final int ContextoDados_onCreate=0x7f05000b;
         public static final int ContextoDados_onUpgrade=0x7f05000c;
-        public static final int action_forgot_password=0x7f05001c;
+        public static final int action_forgot_password=0x7f05001d;
         public static final int action_settings=0x7f050002;
-        public static final int action_sign_in_register=0x7f05001a;
-        public static final int action_sign_in_short=0x7f05001b;
+        public static final int action_sign_in_register=0x7f05001b;
+        public static final int action_sign_in_short=0x7f05001c;
         public static final int app_name=0x7f050000;
         public static final int cadastrar=0x7f050003;
         public static final int entrar=0x7f050004;
-        public static final int error_field_required=0x7f050021;
-        public static final int error_incorrect_password=0x7f050020;
-        public static final int error_invalid_email=0x7f05001e;
-        public static final int error_invalid_password=0x7f05001f;
+        public static final int error_field_required=0x7f050022;
+        public static final int error_incorrect_password=0x7f050021;
+        public static final int error_invalid_email=0x7f05001f;
+        public static final int error_invalid_password=0x7f050020;
         public static final int hello_world=0x7f050001;
-        public static final int login_progress_signing_in=0x7f05001d;
+        public static final int login_progress_signing_in=0x7f05001e;
         public static final int matricula=0x7f050008;
         public static final int nao_lida=0x7f050016;
+        public static final int nome_aplicativo=0x7f050017;
         /**  Strings related to login 
          */
-        public static final int prompt_email=0x7f050018;
-        public static final int prompt_password=0x7f050019;
+        public static final int prompt_email=0x7f050019;
+        public static final int prompt_password=0x7f05001a;
         public static final int rem_biblioteca=0x7f050011;
         public static final int rem_coordenador=0x7f05000f;
         public static final int rem_direcao_unidade=0x7f050010;
@@ -121,7 +122,7 @@ public final class R {
         public static final int title_activity_config=0x7f05000e;
         public static final int title_activity_detalhe_mensagem=0x7f05000a;
         public static final int title_activity_lista=0x7f050014;
-        public static final int title_activity_login=0x7f050017;
+        public static final int title_activity_login=0x7f050018;
         public static final int title_activity_test=0x7f050015;
         public static final int usuario=0x7f050006;
     }

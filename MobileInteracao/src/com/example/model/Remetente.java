@@ -19,6 +19,11 @@ public class Remetente {
 		super();
 		this.nome = nome;
 	}
+	
+	@Override
+	public String toString() {
+		return "Remetente [id=" + id + ", nome=" + nome + "]";
+	}
 	public Remetente() {
 		super();
 		// TODO Auto-generated constructor stub

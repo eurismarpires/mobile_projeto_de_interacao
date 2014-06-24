@@ -3,6 +3,7 @@ package com.example.banco;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.example.model.Disciplina;
 import com.example.model.Notificacao;
 import com.example.model.Remetente;
 import com.example.model.Tipo;
@@ -43,23 +44,50 @@ public class DadosExemplo {
 		t4.setId(gt.insert(t4));
 		
 		
+		Disciplina disciplina1 = new Disciplina("Desenvolvimento Para Dispositivos Móveis");
+		Disciplina disciplina2 = new Disciplina("Desenvolvimento Para Dispositivos Web");
+		Disciplina disciplina3 = new Disciplina("Integração de Aplicações");
+		Disciplina disciplina4 = new Disciplina("Desenvolvimento Para Persistência");
+		Disciplina disciplina5 = new Disciplina("Desenvolvimento de Software Concorrente");
+		GerenciadorDisciplina gd = new GerenciadorDisciplina(context);
+		gd.deletarTodos();
+		disciplina1.setId(gd.insert(disciplina1));
+		disciplina2.setId(gd.insert(disciplina2));
+		disciplina3.setId(gd.insert(disciplina3));
+		disciplina4.setId(gd.insert(disciplina4));
+		disciplina5.setId(gd.insert(disciplina5));
 		
-		String d1 = sdf.format(d = new Date(2015,6,1)); 
-		Notificacao n1 = new Notificacao(d1, r1, "Atenção, conforme previsto em calendário acadêmico, não haverá aulas nos dias 19, 20 e 21 de junho. Na... http://fb.me/1zN2B74dO", 0, t1);
 		
-		String d2 = sdf.format(d = new Date(2015,6,2)); 
-		Notificacao n2 = new Notificacao(d2, r2 , "Atenção alunos, fiquem atentos com a devolução e com o prazo de entrega de materiais nas Bibliotecas. http://fb.me/30Xwd8009", 0, t2);	
+		
+		String d1 = sdf.format(d = new Date(2014,6,1)); 
+		Notificacao n1 = new Notificacao(d1, r1, "Atenção, conforme previsto em calendário acadêmico, não haverá aulas nos dias 19, 20 e 21 de junho. Na... http://fb.me/1zN2B74dO", 0, t1,disciplina1);
+		
+		String d2 = sdf.format(d = new Date(2014,6,2)); 
+		Notificacao n2 = new Notificacao(d2, r2 , "Atenção alunos, fiquem atentos com a devolução e com o prazo de entrega de materiais nas Bibliotecas. http://fb.me/30Xwd8009", 0, t2,disciplina2);	
 
-		String d3 = sdf.format(d = new Date(2015,5,5)); 
-		Notificacao n3 = new Notificacao(d3, r5 , "A coordenação de Relações Públicas da Ascom #UFG conquistou 1º lugar da região Centro-Oeste e o 3º lugar Nacional... http://fb.me/12t657P8a", 0, t4);		
+		String d3 = sdf.format(d = new Date(2014,5,5)); 
+		Notificacao n3 = new Notificacao(d3, r5 , "A coordenação de Relações Públicas da Ascom #UFG conquistou 1º lugar da região Centro-Oeste e o 3º lugar Nacional... http://fb.me/12t657P8a", 0, t4,disciplina3);		
 		
+		String d4 = sdf.format(d = new Date(2014,6,23)); 
+		Notificacao n4 = new Notificacao(d3, r5 , "Professor da Colorado State University, Ian Michael Orme, fala sobre os avanços e entraves no combate à... http://fb.me/6B0zym0Vi", 0, t4,disciplina3);		
+
 		
+		String d5 = sdf.format(d = new Date(2015,6,10)); 
+		Notificacao n5 = new Notificacao(d3, r5 , "Música No Campus UFG emociona o público, com repertório diversificado e belissíma interpretação de Filipe Catto. http://fb.me/3i0gKgVdr", 0, t4,disciplina4);		
+		
+
+		String d6 = sdf.format(d = new Date(2015,6,11)); 
+		Notificacao n6 = new Notificacao(d3, r5 , "Alunos, não se esqueçam de avaliar os professores.O questionário pode ser preenchido até o dia 12 de junho. http://fb.me/1o4eyKVux", 0, t1,disciplina5);		
+				
 		
 		GerenciadorNotificacoes gNote = new GerenciadorNotificacoes(context);
 		Log.i(TAG, "Vou deletar todas");
 		gNote.deletarTodas();
 		gNote.inserir(n1);
 		gNote.inserir(n2);
-		gNote.inserir(n3);		
+		gNote.inserir(n3);
+		gNote.inserir(n4);
+		gNote.inserir(n5);
+		gNote.inserir(n6);
 	}
 }

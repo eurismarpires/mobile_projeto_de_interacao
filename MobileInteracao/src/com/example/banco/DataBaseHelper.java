@@ -34,14 +34,16 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {		
 		db.execSQL("CREATE TABLE login (_id INTEGER PRIMARY KEY, matricula TEXT, senha TEXT, usuario TEXT)");		
 		db.execSQL("CREATE TABLE tipo (_id INTEGER PRIMARY KEY, descricao TEXT)");		
+		db.execSQL("CREATE TABLE disciplina (_id INTEGER PRIMARY KEY, descricao TEXT)");
 		db.execSQL("CREATE TABLE remetente (_id INTEGER PRIMARY KEY, nome TEXT)");		
-		db.execSQL("CREATE TABLE notificacao (_id INTEGER PRIMARY KEY, lida INTEGER,data TEXT, mensagem TEXT, id_remetente INTEGER, id_tipo INTEGER)");
+		db.execSQL("CREATE TABLE notificacao (_id INTEGER PRIMARY KEY, lida INTEGER,data TEXT, mensagem TEXT, id_remetente INTEGER, id_tipo INTEGER, id_disciplina INTEGER)");
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		db.execSQL("DROP TABLE IF EXISTS login");
 		db.execSQL("DROP TABLE IF EXISTS tipo");
+		db.execSQL("DROP TABLE IF EXISTS disciplina");
 		db.execSQL("DROP TABLE IF EXISTS remetente");
 		db.execSQL("DROP TABLE IF EXISTS notificacao");
 

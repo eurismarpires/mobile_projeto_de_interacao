@@ -9,19 +9,20 @@ public class Notificacao 	{
 	private String mensagem;	
 	private Integer lida;	
 	private Tipo tipo; //Aviso de avaliação, Notas e Frequencias, aviso de vencimentos de emprestimos biblioteca, comunicação geral
-	
+	private Disciplina disciplina;
 	public Notificacao() {
 		super();
 	}
 
 	public Notificacao(String data, Remetente remetente, String mensagem,
-			Integer lida, Tipo tipo) {
+			Integer lida, Tipo tipo, Disciplina disciplina) {
 		super();
 		this.data = data;
 		this.remetente = remetente;
 		this.mensagem = mensagem;
 		this.lida = lida;
 		this.tipo = tipo;
+		this.disciplina = disciplina;
 	}
 
 	public Integer getId() {
@@ -72,11 +73,13 @@ public class Notificacao 	{
 		this.tipo = tipo;
 	}
 
+	public Disciplina getDisciplina() {
+		return disciplina;
+	}
 
-
-
-	
-	
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
+	}
 
 	
 }

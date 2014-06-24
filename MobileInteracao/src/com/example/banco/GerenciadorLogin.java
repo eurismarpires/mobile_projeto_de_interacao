@@ -45,19 +45,21 @@ public class GerenciadorLogin {
 		db.update("login", values, "_id" + "= ?",
 				new String[] { String.valueOf(login.getId()) });
 	}
+
 	public Login getLogin(long loginId) {
-	//	String selectQuery = "SELECT * FROM login WHERE _id = " + loginId;
-		String selectQuery = "SELECT * FROM login WHERE _id = 1";
+		String selectQuery = "SELECT * FROM login WHERE _id = " + loginId;		
 		Log.e(TAG, selectQuery);
 		Cursor c = db.rawQuery(selectQuery, null);
 		if (c != null)
 			c.moveToFirst();
 
 		Login login = new Login();
-		login.setId(c.getInt(c.getColumnIndex("_id")));
-		login.setMatricula((c.getString(c.getColumnIndex("matricula"))));
-		login.setSenha((c.getString(c.getColumnIndex("senha"))));
-		login.setUsuario((c.getString(c.getColumnIndex("usuario"))));			
+		if (c.getCount() > 0) {
+			login.setId(c.getInt(c.getColumnIndex("_id")));
+			login.setMatricula((c.getString(c.getColumnIndex("matricula"))));
+			login.setSenha((c.getString(c.getColumnIndex("senha"))));
+			login.setUsuario((c.getString(c.getColumnIndex("usuario"))));
+		}
 		return login;
 	}
 

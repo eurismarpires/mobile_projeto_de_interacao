@@ -24,5 +24,6 @@
     <string name="title_activity_lista">ListaActivity</string>
     <string name="title_activity_test">TestActivity</string>
     <string name="nao_lida">Marcar como não lida</string>
+    <string name="nome_aplicativo">Academy News UFG</string>
 
 </resources>

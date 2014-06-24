@@ -33,15 +33,15 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {				
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		setTitle("Notificações");				
+		setTitle("Notificações");		
+		DadosExemplo.gerarNotificacoes(getApplicationContext());
 	}
 
 	public void onClickEntrar(View v){
 		Intent intent = new Intent(this, LoginActivity.class);
 		startActivity(intent);			
 	}
-	public void onClickVisitante(View v){
-		DadosExemplo.gerarNotificacoes(getApplicationContext());
+	public void onClickVisitante(View v){		
 		Intent intent = new Intent(this, ListaActivity.class);
 		intent.putExtra("visitante", true);
 		startActivity(intent);		

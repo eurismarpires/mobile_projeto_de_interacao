@@ -11,7 +11,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-
 public class GerenciadorDisciplina {
 	private static final String TAG = "GERENCIADOR_DISCIPLINA";
 	private SQLiteDatabase db = null;
@@ -31,7 +30,7 @@ public class GerenciadorDisciplina {
 
 	public long insert(Disciplina disciplina) {
 		ContentValues values = new ContentValues();
-		values.put("descricao", disciplina.getDescricao());		
+		values.put("descricao", disciplina.getDescricao());
 		long disciplina_id = db.insert("disciplina", null, values);
 		return disciplina_id;
 	}
@@ -42,50 +41,56 @@ public class GerenciadorDisciplina {
 		db.update("disciplina", values, "_id" + "= ?",
 				new String[] { String.valueOf(disciplina.getId()) });
 	}
-	
-	public void delete(long disciplinaId) {	    
-	    db.delete("disciplina", "_id" + " = ?",new String[] { String.valueOf(disciplinaId) });
+
+	public void delete(long disciplinaId) {
+		db.delete("disciplina", "_id" + " = ?",
+				new String[] { String.valueOf(disciplinaId) });
 	}
+
 	public Disciplina getDisciplina(long disciplinaId) {
-		String selectQuery = "SELECT * FROM disciplina WHERE _id = " + disciplinaId;
+		String selectQuery = "SELECT * FROM disciplina WHERE _id = "
+				+ disciplinaId;
 		Log.e(TAG, selectQuery);
 		Cursor c = db.rawQuery(selectQuery, null);
 		if (c != null)
 			c.moveToFirst();
 
 		Disciplina disciplina = new Disciplina();
-		disciplina.setId(c.getInt(c.getColumnIndex("_id")));
-		disciplina.setDescricao((c.getString(c.getColumnIndex("descricao"))));		
+		if (c.getCount() > 0) {
+			disciplina.setId(c.getInt(c.getColumnIndex("_id")));
+			disciplina.setDescricao((c.getString(c.getColumnIndex("descricao"))));
+		}
 		return disciplina;
 	}
 
 	public List<Disciplina> getDisciplinas() {
-	    List<Disciplina> disciplinas = new ArrayList<Disciplina>();
-	    String selectQuery = "SELECT  * FROM disciplina";	 
-	    Log.e(TAG, selectQuery);	 	    
-	    Cursor c = db.rawQuery(selectQuery, null);
-	 	    
-	    if (c.moveToFirst()) {
-	        do {
-	            Disciplina r = new Disciplina();
-	            r.setId(c.getInt((c.getColumnIndex("_id"))));
-	            r.setDescricao((c.getString(c.getColumnIndex("descricao"))));	            	 	           
-	            disciplinas.add(r);
-	        } while (c.moveToNext());
-	    }
-	 
-	    return disciplinas;
+		List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+		String selectQuery = "SELECT  * FROM disciplina";
+		Log.e(TAG, selectQuery);
+		Cursor c = db.rawQuery(selectQuery, null);
+
+		if (c.moveToFirst()) {
+			do {
+				Disciplina r = new Disciplina();
+				r.setId(c.getInt((c.getColumnIndex("_id"))));
+				r.setDescricao((c.getString(c.getColumnIndex("descricao"))));
+				disciplinas.add(r);
+			} while (c.moveToNext());
+		}
+
+		return disciplinas;
 	}
+
 	public void deletarTodos() {
-		Log.i(TAG, "VOU Deletar Todas os Rementes ");		
+		Log.i(TAG, "VOU Deletar Todas os Rementes ");
 		String query = "DELETE FROM disciplina";
-		db.execSQL(query);			
+		db.execSQL(query);
 		Log.i(TAG, "Todas os disciplinas foram deletados");
-	}	
+	}
+
 	public void fecharDB() {
 		if (db != null && db.isOpen())
 			db.close();
 	}
-	
 
 }

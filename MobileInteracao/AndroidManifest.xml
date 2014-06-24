@@ -27,7 +27,7 @@
         </activity>
         <activity
             android:name="com.example.mobileinteracao.MainActivity"
-            android:label="@string/title_activity_cadastro" >
+            android:label="@string/nome_aplicativo" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

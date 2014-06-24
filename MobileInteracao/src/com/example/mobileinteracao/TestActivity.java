@@ -12,6 +12,7 @@ import com.example.model.Tipo;
 
 import android.app.Activity;
 import android.app.ActionBar;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import android.os.Build;
 
 public class TestActivity extends Activity {
@@ -71,11 +73,34 @@ public class TestActivity extends Activity {
 		new GerenciadorRemetente(this).deletarTodos();
 	}
 	public void buscar1(View v){
+		//buscarTipo1();
+	//	Toast.makeText(this, "Vou buscar remetente", Toast.LENGTH_LONG);
+		mensagem("este é uma mensagem de teste");
+		buscarRemetente();
+		//Toast.makeText(this, "já busquei remetente", Toast.LENGTH_LONG);
+	}
+	public void buscarTipo1(){
 	    GerenciadorTipo gt = new GerenciadorTipo(this);
 	    Tipo t = new Tipo();
-	    t = gt.getTipo(1);
+	    t = gt.getTipo(1);	    
+	    if(t != null){
+	    	Log.i(TAG, t.getDescricao());
+	    }else{
+	    	Log.i(TAG, "tipo está nulo");
+	    }
+	}
+	public void buscaLogin1(){
+	    GerenciadorLogin glogin = new GerenciadorLogin(this);
+	    Login login = new Login();
+	    login = glogin.getLogin(1);
 	    
-	    Log.i(TAG, t.getDescricao());
+	    //Log.i(TAG, login.getUsuario());
+	}	
+	public void buscarRemetente(){
+		GerenciadorRemetente g = new GerenciadorRemetente(this);
+		Remetente r = new Remetente();
+		r = g.getRemetente(1L);
+		Log.i(TAG,  r.toString());
 	}
 	public void buscarTodos(View v){}
 	
@@ -98,5 +123,12 @@ public class TestActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
+	public void mensagem(String msg) {
+		AlertDialog.Builder alerta = new AlertDialog.Builder(this);
+		alerta.setTitle("Atenção");
+		alerta.setMessage(msg);
+		alerta.setIcon(R.drawable.ic_launcher);
+		alerta.setPositiveButton("OK", null);
+		alerta.show();
+	}
 }
