@@ -80,9 +80,17 @@ public class GerenciadorNotificacoes {
 		Log.i(TAG, "Todas as notificações foram deletadas: ");
 	}
 
-	public List<Notificacao> getNotificacoes() {
+	public List<Notificacao> getNotificacoes(String ordem) {
 		List<Notificacao> note = new ArrayList<Notificacao>();
-		String selectQuery = "SELECT * FROM notificacao";
+		
+		
+		
+	//	String selectQuery = "SELECT * FROM notificacao";
+		
+		String selectQuery = "SELECT _id, lida,strftime('%d/%m/%Y %H:%M',data) data, mensagem, id_remetente, id_tipo, id_disciplina FROM notificacao " + ordem;
+		
+		
+		
 		Log.e(TAG, selectQuery);
 		Cursor c = db.rawQuery(selectQuery, null);
 
@@ -121,9 +129,10 @@ public class GerenciadorNotificacoes {
 		return note;
 	}
 
-	public List<Notificacao> getNotificacoesVisitante() {
+	public List<Notificacao> getNotificacoesVisitante(String ordem) {
 		List<Notificacao> note = new ArrayList<Notificacao>();
-		String selectQuery = "SELECT * FROM notificacao WHERE id_tipo = 4";
+		//String selectQuery = "SELECT * FROM notificacao WHERE id_tipo = 4";
+		String selectQuery = "SELECT _id, lida,strftime('%d/%m/%Y %H:%M',data) data, mensagem, id_remetente, id_tipo, id_disciplina FROM notificacao WHERE id_tipo = 4 " + ordem;
 		Log.e(TAG, selectQuery);
 		Cursor c = db.rawQuery(selectQuery, null);
 

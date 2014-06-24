@@ -3,9 +3,10 @@
     tools:context="com.example.mobileinteracao.ListaActivity" >
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/ordenar_data_asc"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="@string/action_settings"/>
+        android:title="@string/ordernar_data_asc"/>
+    <item android:id="@+id/ordenar_data_desc" android:title="@string/ordenar_data_desc"></item>
 
 </menu>

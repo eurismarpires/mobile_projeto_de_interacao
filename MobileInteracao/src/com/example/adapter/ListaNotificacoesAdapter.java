@@ -57,8 +57,7 @@ public class ListaNotificacoesAdapter extends ArrayAdapter<Notificacao> {
 		
 		
 		final Intent intent = new Intent(context, DetalheMensagemActivity.class);
-		String id = notificacao.getId().toString();
-		Log.i("ADAPTER", "id = " + id);
+		String id = notificacao.getId().toString();		
 		intent.putExtra("id", id);		
 		intent.putExtra("mensagem", notificacao.getMensagem());
 		intent.putExtra("remetente", notificacao.getRemetente().getNome());

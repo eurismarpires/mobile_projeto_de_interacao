@@ -25,5 +25,7 @@
     <string name="title_activity_test">TestActivity</string>
     <string name="nao_lida">Marcar como não lida</string>
     <string name="nome_aplicativo">Academy News UFG</string>
+    <string name="ordernar_data_asc">Ordernar por Data Ascendente</string>
+    <string name="ordenar_data_desc">Ordenar por Data Descendente</string>
 
 </resources>

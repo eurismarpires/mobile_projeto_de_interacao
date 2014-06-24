@@ -1,6 +1,7 @@
 package com.example.banco;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import com.example.model.Disciplina;
@@ -11,12 +12,10 @@ import com.example.model.Tipo;
 import android.content.Context;
 import android.util.Log;
 
-public class DadosExemplo {
-	static Date d;
+public class DadosExemplo {	
 	static final String TAG = "DadosFicticios";
 	public static void gerarNotificacoes(Context context){
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");		
+				
 		
 		Remetente r1 = new Remetente("Coordenador do Curso");
 		Remetente r2 = new Remetente("Direção de Unidade do Curso");
@@ -59,25 +58,38 @@ public class DadosExemplo {
 		
 		
 		
-		String d1 = sdf.format(d = new Date(2014,6,1)); 
+		 
+		//SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		Calendar calendar = Calendar.getInstance();
+
+		calendar.set(2014, 5, 2);	
+		String d1 = sdf.format(calendar.getTime());
+				
+		
 		Notificacao n1 = new Notificacao(d1, r1, "Atenção, conforme previsto em calendário acadêmico, não haverá aulas nos dias 19, 20 e 21 de junho. Na... http://fb.me/1zN2B74dO", 0, t1,disciplina1);
 		
-		String d2 = sdf.format(d = new Date(2014,6,2)); 
+		calendar.set(2014, 5, 6,20,3);		
+		String d2 = sdf.format(calendar.getTime()); 
 		Notificacao n2 = new Notificacao(d2, r2 , "Atenção alunos, fiquem atentos com a devolução e com o prazo de entrega de materiais nas Bibliotecas. http://fb.me/30Xwd8009", 0, t2,disciplina2);	
 
-		String d3 = sdf.format(d = new Date(2014,5,5)); 
+		calendar.set(2014, 6, 5,7,0);
+		String d3 = sdf.format(calendar.getTime());		 
 		Notificacao n3 = new Notificacao(d3, r5 , "A coordenação de Relações Públicas da Ascom #UFG conquistou 1º lugar da região Centro-Oeste e o 3º lugar Nacional... http://fb.me/12t657P8a", 0, t4,disciplina3);		
 		
-		String d4 = sdf.format(d = new Date(2014,6,23)); 
-		Notificacao n4 = new Notificacao(d3, r5 , "Professor da Colorado State University, Ian Michael Orme, fala sobre os avanços e entraves no combate à... http://fb.me/6B0zym0Vi", 0, t4,disciplina3);		
+		calendar.set(2014, 7, 23,4,5);
+		String d4 = sdf.format(calendar.getTime());		 
+		Notificacao n4 = new Notificacao(d4, r5 , "Professor da Colorado State University, Ian Michael Orme, fala sobre os avanços e entraves no combate à... http://fb.me/6B0zym0Vi", 0, t4,disciplina3);		
 
 		
-		String d5 = sdf.format(d = new Date(2015,6,10)); 
-		Notificacao n5 = new Notificacao(d3, r5 , "Música No Campus UFG emociona o público, com repertório diversificado e belissíma interpretação de Filipe Catto. http://fb.me/3i0gKgVdr", 0, t4,disciplina4);		
+		calendar.set(2014, 7, 10,12,0);
+		String d5 = sdf.format(calendar.getTime());		
+		Notificacao n5 = new Notificacao(d5, r5 , "Música No Campus UFG emociona o público, com repertório diversificado e belissíma interpretação de Filipe Catto. http://fb.me/3i0gKgVdr", 0, t4,disciplina4);		
 		
-
-		String d6 = sdf.format(d = new Date(2015,6,11)); 
-		Notificacao n6 = new Notificacao(d3, r5 , "Alunos, não se esqueçam de avaliar os professores.O questionário pode ser preenchido até o dia 12 de junho. http://fb.me/1o4eyKVux", 0, t1,disciplina5);		
+        
+		calendar.setTime(new Date());
+		String d6 = sdf.format(calendar.getTime()); 
+		Notificacao n6 = new Notificacao(d6, r5 , "Alunos, não se esqueçam de avaliar os professores.O questionário pode ser preenchido até o dia 12 de junho. http://fb.me/1o4eyKVux", 0, t1,disciplina5);		
 				
 		
 		GerenciadorNotificacoes gNote = new GerenciadorNotificacoes(context);

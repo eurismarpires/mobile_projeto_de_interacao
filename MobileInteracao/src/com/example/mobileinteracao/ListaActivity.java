@@ -28,6 +28,7 @@ public class ListaActivity extends Activity {
 	Context context;
 	private static String TAG = "ListaActivity";
 	private static Boolean visitante;
+	private static String ordem = "ORDER BY data desc";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -41,17 +42,18 @@ public class ListaActivity extends Activity {
 		}else{
 			visitante = false;
 		}
-		criarLista();
+		criarLista("ORDER BY data asc");
 	}
 
-	public void criarLista() {				
+	public void criarLista(String ordem) {		
+		Log.i(TAG, "criarLista: " + ordem);
 		GerenciadorNotificacoes g = new GerenciadorNotificacoes(context);
 		
 		List<Notificacao> listaNotificacao = new ArrayList<Notificacao>();
 		if(visitante){
-			listaNotificacao = g.getNotificacoesVisitante();
+			listaNotificacao = g.getNotificacoesVisitante(ordem);
 		}else{
-			listaNotificacao = g.getNotificacoes();	
+			listaNotificacao = g.getNotificacoes(ordem);	
 		}
 		
 		
@@ -65,20 +67,10 @@ public class ListaActivity extends Activity {
 	@Override
 	protected void onStart() {		
 		super.onStart();
-		GerenciadorNotificacoes g = new GerenciadorNotificacoes(context);
-		
-		List<Notificacao> listaNotificacao = new ArrayList<Notificacao>();
-		if(visitante){
-			listaNotificacao = g.getNotificacoesVisitante();
-		}else{
-			listaNotificacao = g.getNotificacoes();	
-		}		
-		
-		ListView lista = (ListView) findViewById(R.id.listView1);
-		ListaNotificacoesAdapter adapter = new ListaNotificacoesAdapter(this,
-				listaNotificacao);
-		lista.setAdapter(adapter);		
+		criarLista(ordem);
+		Log.i(TAG, "ORDENOU ON START: " + ordem);
 	}
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -90,7 +82,13 @@ public class ListaActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		if (id == R.id.ordenar_data_asc) {
+			ordem = "ORDER BY data ASC";
+			criarLista(ordem);
+			return true;
+		}else if (id == R.id.ordenar_data_desc) {
+			ordem = "ORDER BY data DESC";
+			criarLista(ordem);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
