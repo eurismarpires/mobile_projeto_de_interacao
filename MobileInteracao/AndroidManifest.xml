@@ -45,7 +45,7 @@
         <activity
             android:name="com.example.mobileinteracao.TestActivity"
             android:label="@string/title_activity_test" >
-        </activity>
+        </activity>      
     </application>
 
 </manifest>

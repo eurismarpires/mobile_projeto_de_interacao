@@ -27,5 +27,11 @@
     <string name="nome_aplicativo">Academy News UFG</string>
     <string name="ordernar_data_asc">Ordernar por Data Ascendente</string>
     <string name="ordenar_data_desc">Ordenar por Data Descendente</string>
+    <string name="localizar_data_remetente">Localizar por Data e Remetente</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="data_inicial">Data Inicial</string>
+    <string name="remetente">Remetente</string>
+    <string name="nao_lidas">Apenas não lidas</string>
+    <string name="data_final">Data Final</string>
 
 </resources>

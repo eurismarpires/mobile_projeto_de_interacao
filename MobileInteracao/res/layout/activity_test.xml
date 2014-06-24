@@ -3,7 +3,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btnLocalizarDataRemente"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:onClick="inserir"
