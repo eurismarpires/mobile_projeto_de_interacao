@@ -33,7 +33,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {				
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		setTitle("Notificações");		
+		setTitle("Academy News - UFG");		
 		DadosExemplo.gerarNotificacoes(getApplicationContext());
 	}
 
@@ -70,12 +70,7 @@ public class MainActivity extends Activity {
 			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(intent);			
 			return true;
-		}	
-		else if(id == R.id.teste){
-			Intent intent = new Intent(getApplicationContext(),TestActivity.class);
-			startActivity(intent);
-			
-		}
+		}			
 		return super.onOptionsItemSelected(item);
 	}	
 }

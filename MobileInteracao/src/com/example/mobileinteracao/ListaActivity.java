@@ -24,8 +24,10 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.adapter.ListaNotificacoesAdapter;
+import com.example.banco.GerenciadorDisciplina;
 import com.example.banco.GerenciadorNotificacoes;
 import com.example.banco.GerenciadorRemetente;
+import com.example.model.Disciplina;
 import com.example.model.Notificacao;
 import com.example.model.Remetente;
 
@@ -111,12 +113,15 @@ public class ListaActivity extends Activity {
 		} else if (id == R.id.localizar_por_data_remetente) {
 			localizarData();
 		}
+		else if (id == R.id.localizar_por_disciplina) {
+			localizarPorDisciplina();
+		}
 		return super.onOptionsItemSelected(item);
 	}
 
 	private void localizarData() {
 		LayoutInflater li = getLayoutInflater();
-		final View view = li.inflate(R.layout.pesquisa_data_remetente, null);
+		final View view = li.inflate(R.layout.pesquisa_data_remetente, null);		
 		final EditText edtDataInicial = (EditText) view
 				.findViewById(R.id.edtDataInicial);
 		final EditText edtDataFinal = (EditText) view
@@ -145,7 +150,7 @@ public class ListaActivity extends Activity {
 		spRemententes.setAdapter(adapter);
 		txtDtaInicial = "";
 		txtDtaFinal = "";
-		view.findViewById(R.id.btnLocalizarDataRemente).setOnClickListener(
+		view.findViewById(R.id.btnLocalizarDisciplina).setOnClickListener(
 				new View.OnClickListener() {
 
 					@Override
@@ -199,7 +204,7 @@ public class ListaActivity extends Activity {
 					}
 				});
 
-		view.findViewById(R.id.btnCancelar).setOnClickListener(
+		view.findViewById(R.id.btnCancelarDisciplina).setOnClickListener(
 				new View.OnClickListener() {
 
 					@Override
@@ -209,13 +214,51 @@ public class ListaActivity extends Activity {
 				});
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle("Titulo");
+		builder.setTitle("Informe os dados para a pesquisa");
 		builder.setView(view);
 		alerta = builder.create();
 		alerta.show();
 
 	}
+	private void localizarPorDisciplina(){
+		LayoutInflater li = getLayoutInflater();
+		final View view = li.inflate(R.layout.pesquisa_por_disciplina, null);		
+		
+		GerenciadorDisciplina gDisc = new GerenciadorDisciplina(this);
+		List<Disciplina> disc = new ArrayList<Disciplina>();
+		disc = gDisc.getDisciplinas();
+		ArrayAdapter<Disciplina> adapter = new ArrayAdapter<Disciplina>(this,
+				android.R.layout.simple_list_item_1, disc);
+		
 
+		final Spinner spRemententes = (Spinner) view
+				.findViewById(R.id.spinner1);
+		spRemententes.setAdapter(adapter);
+
+		view.findViewById(R.id.btnLocalizarDisciplina).setOnClickListener(
+				new View.OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						alerta.dismiss();
+					}
+				});
+
+		view.findViewById(R.id.btnCancelarDisciplina).setOnClickListener(
+				new View.OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						alerta.dismiss();
+					}
+				});
+
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setTitle("Informe a disciplina");
+		builder.setView(view);
+		alerta = builder.create();
+		alerta.show();		
+	}
 	public void mensagemToast(String msg) {
 		Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
 	}

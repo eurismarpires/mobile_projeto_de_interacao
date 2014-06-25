@@ -82,13 +82,13 @@
         android:layout_weight="1" >
 
         <Button
-            android:id="@+id/btnCancelar"
+            android:id="@+id/btnCancelarDisciplina"
             android:layout_width="158dp"
             android:layout_height="wrap_content"
             android:text="@string/cancelar" />
 
         <Button
-            android:id="@+id/btnLocalizarDataRemente"
+            android:id="@+id/btnLocalizarDisciplina"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Localizar" />

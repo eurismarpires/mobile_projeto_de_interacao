@@ -31,8 +31,8 @@ public final class R {
         public static final int TextView03=0x7f080013;
         public static final int TextView05=0x7f080011;
         public static final int action_settings=0x7f08002b;
-        public static final int btnCancelar=0x7f08002a;
-        public static final int btnLocalizarDataRemente=0x7f080020;
+        public static final int btnCancelarDisciplina=0x7f08002a;
+        public static final int btnLocalizarDisciplina=0x7f080020;
         public static final int btnSalvar=0x7f080009;
         public static final int button2=0x7f080021;
         public static final int button3=0x7f080022;
@@ -58,7 +58,7 @@ public final class R {
         public static final int imageView1=0x7f08001c;
         public static final int listView1=0x7f080018;
         public static final int localizar_por_data_remetente=0x7f08002e;
-        public static final int localizar_por_data_remetente2=0x7f08002f;
+        public static final int localizar_por_disciplina=0x7f08002f;
         public static final int ordenar_data_asc=0x7f08002c;
         public static final int ordenar_data_desc=0x7f08002d;
         public static final int sair=0x7f080031;
@@ -67,7 +67,6 @@ public final class R {
         public static final int tableRow1=0x7f080000;
         public static final int tableRow2=0x7f080003;
         public static final int tableRow3=0x7f080006;
-        public static final int teste=0x7f080032;
         public static final int textView1=0x7f08000b;
         public static final int textView2=0x7f08001d;
         public static final int tvData=0x7f080004;
@@ -88,6 +87,7 @@ public final class R {
         public static final int activity_test=0x7f030006;
         public static final int notificacao_item=0x7f030007;
         public static final int pesquisa_data_remetente=0x7f030008;
+        public static final int pesquisa_por_disciplina=0x7f030009;
     }
     public static final class menu {
         public static final int cadastro=0x7f070000;
