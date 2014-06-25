@@ -31,7 +31,7 @@ public class Disciplina {
 	}
 	@Override
 	public String toString() {
-		return "Disciplina [id=" + id + ", descricao=" + descricao + "]";
+		return descricao;
 	}
 	
 }
