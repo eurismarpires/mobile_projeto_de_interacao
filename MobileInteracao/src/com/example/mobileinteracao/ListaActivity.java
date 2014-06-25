@@ -1,20 +1,14 @@
 package com.example.mobileinteracao;
 
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 
-import com.example.adapter.ListaNotificacoesAdapter;
-import com.example.banco.DadosExemplo;
-import com.example.banco.GerenciadorNotificacoes;
-import com.example.model.Notificacao;
-
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,20 +16,30 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
-import android.os.Build;
+
+import com.example.adapter.ListaNotificacoesAdapter;
+import com.example.banco.GerenciadorNotificacoes;
+import com.example.banco.GerenciadorRemetente;
+import com.example.model.Notificacao;
+import com.example.model.Remetente;
 
 public class ListaActivity extends Activity {
 	Context context;
 	private static String TAG = "ListaActivity";
 	private static Boolean visitante;
 	private static String ordem = "ORDER BY data desc";
+	private static String filtro = "";
 	private AlertDialog alerta;
+	private String txtDtaInicial;
+	private String txtDtaFinal;
+	private boolean apenasLida;
+	private long idRemetente;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,14 +60,22 @@ public class ListaActivity extends Activity {
 	public void criarLista(String ordem) {
 		Log.i(TAG, "criarLista: " + ordem);
 		GerenciadorNotificacoes g = new GerenciadorNotificacoes(context);
-
 		List<Notificacao> listaNotificacao = new ArrayList<Notificacao>();
+		filtro = " WHERE _id > 0 ";
 		if (visitante) {
-			listaNotificacao = g.getNotificacoesVisitante(ordem);
-		} else {
-			listaNotificacao = g.getNotificacoes(ordem);
+			filtro = filtro + " and id_tipo = 4 ";
 		}
-
+		if (txtDtaInicial != null && txtDtaFinal != null){
+			if((!txtDtaInicial.equals("")) && (!txtDtaInicial.equals(""))) 
+			filtro = filtro + " and data BETWEEN \"" + txtDtaInicial
+					+ "\" AND \"" + txtDtaFinal + "\"";
+		}
+		if (idRemetente != 0)
+			filtro = filtro + " and id_remetente = " + idRemetente;
+		if (apenasLida == true)
+			filtro = filtro + " and lida = 0";
+	//	mensagem(filtro);
+		listaNotificacao = g.getNotificacoes(ordem, filtro);
 		ListView lista = (ListView) findViewById(R.id.listView1);
 		ListaNotificacoesAdapter adapter = new ListaNotificacoesAdapter(this,
 				listaNotificacao);
@@ -103,41 +115,111 @@ public class ListaActivity extends Activity {
 	}
 
 	private void localizarData() {
-		LayoutInflater li = getLayoutInflater();		
+		LayoutInflater li = getLayoutInflater();
 		final View view = li.inflate(R.layout.pesquisa_data_remetente, null);
-		final EditText edtDataInicial = (EditText)view.findViewById(R.id.edtDataInicial);
-		final EditText edtDataFinal = (EditText)view.findViewById(R.id.edtDataFinal);
-		final CheckBox chkApenasLida = (CheckBox)view.findViewById(R.id.chkApenasLida);
-		view.findViewById(R.id.btnLocalizarDataRemente).setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				 
-				  String txtDtaInicial =  edtDataInicial.getText().toString();
-				  String txtDtaFinal =  edtDataFinal.getText().toString();
-				  Boolean apenasLida = chkApenasLida.isChecked();
-			      Log.i("teste", "clicou aki " + txtDtaInicial + "|" + txtDtaFinal + "|" + apenasLida);		
-			      alerta.dismiss();
-			}
-		});
-		
-		view.findViewById(R.id.btnCancelar).setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-			      Log.i("teste", "clicou cancelar");		
-			      alerta.dismiss();
-			}
-		});
-				
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);		
+		final EditText edtDataInicial = (EditText) view
+				.findViewById(R.id.edtDataInicial);
+		final EditText edtDataFinal = (EditText) view
+				.findViewById(R.id.edtDataFinal);
+		final CheckBox chkApenasLida = (CheckBox) view
+				.findViewById(R.id.chkApenasLida);
+
+		List<Remetente> remTemp = new ArrayList<Remetente>();
+		List<Remetente> rem = new ArrayList<Remetente>();
+		GerenciadorRemetente gRem = new GerenciadorRemetente(this);
+		remTemp = gRem.getRemetentes();
+		Remetente remTodos = new Remetente();
+
+		remTodos.setId(0);
+		remTodos.setNome("Todos Remetentes");
+		rem.add(remTodos);
+		for (Remetente remetente : remTemp) {
+			rem.add(remetente);
+		}
+
+		ArrayAdapter<Remetente> adapter = new ArrayAdapter<Remetente>(this,
+				android.R.layout.simple_list_item_1, rem);
+
+		final Spinner spRemententes = (Spinner) view
+				.findViewById(R.id.spinner1);
+		spRemententes.setAdapter(adapter);
+		txtDtaInicial = "";
+		txtDtaFinal = "";
+		view.findViewById(R.id.btnLocalizarDataRemente).setOnClickListener(
+				new View.OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+
+						txtDtaInicial = edtDataInicial.getText().toString();
+						txtDtaFinal = edtDataFinal.getText().toString();
+						apenasLida = chkApenasLida.isChecked();
+						Remetente r = new Remetente();
+						r = (Remetente) spRemententes.getSelectedItem();
+						idRemetente = r.getId();
+
+						if ((txtDtaInicial.length() == 0)
+								|| (txtDtaFinal.length() == 0)) {
+							txtDtaInicial = "";
+							txtDtaFinal = "";
+							criarLista("ORDER BY data desc");
+						} else if ((txtDtaInicial.length() != 10)
+								|| (txtDtaFinal.length() != 10))
+							mensagem("Data inválida! \n" + txtDtaInicial + "\n"
+									+ txtDtaFinal);
+						else {
+							SimpleDateFormat sdf = new SimpleDateFormat(
+									"yyyy-MM-dd");
+							// data inicial
+							String anoIni = txtDtaInicial.substring(6, 10);
+							String mesIni = txtDtaInicial.substring(3, 5);
+							String diaIni = txtDtaInicial.substring(0, 2);
+
+							Calendar calIni = Calendar.getInstance();
+							calIni.set(Integer.parseInt(anoIni),
+									Integer.parseInt(mesIni) - 1,
+									Integer.parseInt(diaIni));
+							txtDtaInicial = sdf.format(calIni.getTime());
+
+							// data final
+							String anoFim = txtDtaFinal.substring(6, 10);
+							String mesFim = txtDtaFinal.substring(3, 5);
+							String diaFim = txtDtaFinal.substring(0, 2);
+
+							Calendar calFim = Calendar.getInstance();
+							calIni.set(Integer.parseInt(anoFim),
+									Integer.parseInt(mesFim) - 1,
+									Integer.parseInt(diaFim));
+							txtDtaFinal = sdf.format(calIni.getTime());
+							
+
+							criarLista("ORDER BY data desc");
+						}
+						alerta.dismiss();
+					}
+				});
+
+		view.findViewById(R.id.btnCancelar).setOnClickListener(
+				new View.OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						alerta.dismiss();
+					}
+				});
+
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setTitle("Titulo");
 		builder.setView(view);
 		alerta = builder.create();
 		alerta.show();
 
 	}
-	
+
+	public void mensagemToast(String msg) {
+		Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
+	}
+
 	public void mensagem(String msg) {
 		AlertDialog.Builder alerta = new AlertDialog.Builder(this);
 		alerta.setTitle("Atenção");
@@ -147,4 +229,3 @@ public class ListaActivity extends Activity {
 		alerta.show();
 	}
 }
-

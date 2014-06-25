@@ -46,7 +46,7 @@ public final class R {
         public static final int cbNaoLida=0x7f080017;
         public static final int cbProReitoria=0x7f08000f;
         public static final int chkApenasLida=0x7f080029;
-        public static final int configuracoes=0x7f08002f;
+        public static final int configuracoes=0x7f080030;
         public static final int container=0x7f08000a;
         public static final int edtDataFinal=0x7f080027;
         public static final int edtDataInicial=0x7f080026;
@@ -58,15 +58,16 @@ public final class R {
         public static final int imageView1=0x7f08001c;
         public static final int listView1=0x7f080018;
         public static final int localizar_por_data_remetente=0x7f08002e;
+        public static final int localizar_por_data_remetente2=0x7f08002f;
         public static final int ordenar_data_asc=0x7f08002c;
         public static final int ordenar_data_desc=0x7f08002d;
-        public static final int sair=0x7f080030;
+        public static final int sair=0x7f080031;
         public static final int scrollView1=0x7f080019;
         public static final int spinner1=0x7f080028;
         public static final int tableRow1=0x7f080000;
         public static final int tableRow2=0x7f080003;
         public static final int tableRow3=0x7f080006;
-        public static final int teste=0x7f080031;
+        public static final int teste=0x7f080032;
         public static final int textView1=0x7f08000b;
         public static final int textView2=0x7f08001d;
         public static final int tvData=0x7f080004;

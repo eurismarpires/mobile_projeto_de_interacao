@@ -9,5 +9,6 @@
         android:title="@string/ordernar_data_asc"/>
     <item android:id="@+id/ordenar_data_desc" android:title="@string/ordenar_data_desc"></item>
      <item android:id="@+id/localizar_por_data_remetente" android:title="@string/localizar_data_remetente"></item>
+	  <item android:id="@+id/localizar_por_data_remetente2" android:title="Localizar Por Data Versão 2"></item>
 
 </menu>

@@ -22,7 +22,7 @@ public class Remetente {
 	
 	@Override
 	public String toString() {
-		return "Remetente [id=" + id + ", nome=" + nome + "]";
+		return nome;
 	}
 	public Remetente() {
 		super();
